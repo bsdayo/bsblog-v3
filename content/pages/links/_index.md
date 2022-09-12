@@ -1,5 +1,6 @@
 ---
 title: 友链
+slug: links
 links:
   - title: GitHub
     description: GitHub is the world's largest software development platform.
