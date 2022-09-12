@@ -1,5 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on b1acksoil</title><link>https://sorabs.cc/posts/</link><description>Recent content in Posts on b1acksoil</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 12 Sep 2022 06:11:23 +0800</lastBuildDate><atom:link href="https://sorabs.cc/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Test</title><link>https://sorabs.cc/p/test/</link><pubDate>Mon, 12 Sep 2022 06:11:23 +0800</pubDate><guid>https://sorabs.cc/p/test/</guid><description>&lt;h1 id="test">Test&lt;/h1>
-&lt;blockquote>
-&lt;p>Test Markdown&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;code>Hugo&lt;/code>&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on BsBlog</title><link>https://sorabs.cc/posts/</link><description>Recent content in Posts on BsBlog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 12 Sep 2022 15:44:45 +0800</lastBuildDate><atom:link href="https://sorabs.cc/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Brand New Blog v3</title><link>https://sorabs.cc/posts/brand-new-blog-v3/</link><pubDate>Mon, 12 Sep 2022 15:44:45 +0800</pubDate><guid>https://sorabs.cc/posts/brand-new-blog-v3/</guid><description>&lt;p>很久没写博客了，前些天看到几个群友的博客，心血来潮想把自己的复兴一下&lt;/p>
+&lt;h2 id="发展历程">发展历程&lt;/h2>
+&lt;p>在此前已经有过两版博客，但由于懒惰等原因（）现在都废弃了。&lt;/p>
+&lt;h3 id="v1---hexo">v1 - Hexo&lt;/h3>
+&lt;p>最早的一版基于 Hexo 搭建，主题使用自定义程度极高的 butterfly，也草草写过几篇文章。但也正因为自定义程度极高，导致花费大量时间去折腾，反而丢了写博客的初衷。而且 butterfly 主题引用大量的 js 文件和各种图片资源，博客变得非常臃肿，再加上 GitHub Pages 的网络因素，加载非常耗时，不久就放弃了。&lt;/p>
+&lt;h3 id="v2---vue">v2 - Vue&lt;/h3>
+&lt;p>沉寂一段时间之后突然心痒痒，又打算重做一个博客。这时候已经学过了 Vue.js，就抛弃了原有的 Hexo 架构，为了追求极致的开始自己从头写起。最终成品为单页面应用，同时使用自己写的 CLI 工具管理文章、图片等资源。但 v1 时 butterfly 的自定义就花费大量精力了，自己写指挥更甚。再者单页面应用对于 SEO 优化不是友好，也没有多余的服务器搞服务端渲染，加上技术不到位导致成品各种瑕疵&amp;hellip;多方面因素之下，第二版也放弃了。&lt;/p>
+&lt;h3 id="v3---hugo">v3 - Hugo!&lt;/h3>
+&lt;p>又隔了很久，直到最近才打算把博客重新搭起来，不然有时的一些想法也没法记录。参考了上次的教训，这次依然是在已有的博客框架中选择。寻觅一番后，最终选择了 Hugo。Hugo 与 Hexo 类似，同为静态网站生成引擎。但 Hexo 使用 Node.js 编写，而 Hugo 使用 Go，性能远远超过前者。（写到这里的时候测试了一下，执行生成操作的耗时仅有 1262ms，而印象中以前 Hexo 需要数十秒）；而且得益于 Go 语言的特性，Hugo 的所有环境只有一个简单的可执行文件，比起 Hexo 麻烦的环境配置好上太多。&lt;/p>
+&lt;h2 id="总结">总结&lt;/h2>
+&lt;p>从几版的经验可以看出，次次都在舍本逐末，钻研各种配置，却忘记了写文章的初衷。希望这一次的 v3 可以让自己反思一下，坚持下去。&lt;/p></description></item></channel></rss>
