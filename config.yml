@@ -86,7 +86,7 @@ params:
 
     # Waline client configuration see: https://waline.js.org/en/reference/component.html
     waline:
-      serverURL: bsblog-comment-waline.vercel.app
+      serverURL: waline.sorabs.cc
       lang: zh-CN
       pageview:
       emoji:
