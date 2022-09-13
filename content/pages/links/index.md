@@ -33,7 +33,7 @@ links:
 头像/Icon：[https://avatars.githubusercontent.com/u/41754841?v=4](https://avatars.githubusercontent.com/u/41754841?v=4)  
 简介/Description: Redefine the life.（和我熟的话其实写什么都行xxx）
 
-交换友链可以邮箱联系我哦~地址是 [bs@sorabs.cc](mailto:bs@sorabs.cc)，记得带上类似上面的格式
+交换友链可以邮箱联系我，地址是 [bs@sorabs.cc](mailto:bs@sorabs.cc)；或者直接在下面评论，记得带上类似上面的格式哦~
 
 拜拜各位大佬们~
 

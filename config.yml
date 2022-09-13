@@ -56,8 +56,8 @@ params:
       default: Licensed under CC BY-NC-SA 4.0
 
   comments:
-    enabled: false
-    provider: disqus
+    enabled: true
+    provider: waline
 
     disqusjs:
       shortname:
@@ -86,18 +86,19 @@ params:
 
     # Waline client configuration see: https://waline.js.org/en/reference/component.html
     waline:
-      serverURL:
-      lang:
+      serverURL: bsblog-comment-waline.vercel.app
+      lang: zh-CN
       pageview:
       emoji:
-        - https://unpkg.com/@waline/emojis@1.0.1/weibo
+        - https://unpkg.com/@waline/emojis@1.1.0/tieba
+        - https://unpkg.com/@waline/emojis@1.1.0/bilibili
+        - https://unpkg.com/@waline/emojis@1.1.0/qq
       requiredMeta:
         - name
         - email
-        - url
       locale:
-        admin: Admin
-        placeholder:
+        admin: 管理员
+        placeholder: 留下你的足迹~
 
     twikoo:
       envId:

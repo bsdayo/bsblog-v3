@@ -1,6 +1,7 @@
 ---
 title: 测试场 | TestGround
 date: 2022-09-13T21:25:32+08:00
+image: cover.png
 
 draft: false
 ---
