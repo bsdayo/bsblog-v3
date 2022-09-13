@@ -1,16 +1,40 @@
 ---
 title: 友链
 slug: links
-links:
-  - title: GitHub
-    description: GitHub is the world's largest software development platform.
-    website: https://github.com
-  - title: TypeScript
-    description: TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
-    website: https://www.typescriptlang.org
+
 menu:
-    main: 
-        weight: -50
-        params:
-            icon: link
+  main:
+    weight: -50
+    params:
+      icon: link
+
+links:
+  - title: Akula<>Blog
+    description: 苟利国家生死以 岂因祸福避趋之
+    website: https://lolicon.akulak.icu
+    image: https://lolicon.akulak.icu/common/akulakirov.webp
+
+  - title: Atmosphere
+    description: IN PURSUIT OF FREEDOM
+    website: https://blog.awa.moe/
+    image: https://avatars.githubusercontent.com/u/17957399
+
+  - title: 落雪咖啡屋
+    description: Lxns Network
+    website: https://lxns.net/
+    image: https://lxns.net/static/avatar.jpg
+
 ---
+
+欢迎交换友链！
+
+名称：BsBlog  
+链接：[https://sorabs.cc/](https://sorabs.cc/)  
+头像/Icon：[https://avatars.githubusercontent.com/u/41754841?v=4](https://avatars.githubusercontent.com/u/41754841?v=4)  
+简介/Description: Redefine the life.（和我熟的话其实写什么都行xxx）
+
+交换友链可以邮箱联系我哦~地址是 [bs@sorabs.cc](mailto:bs@sorabs.cc)，记得带上类似上面的格式
+
+拜拜各位大佬们~
+
+**按首字母排序*
