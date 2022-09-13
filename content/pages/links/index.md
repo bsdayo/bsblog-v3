@@ -1,6 +1,7 @@
 ---
 title: 友链
 slug: links
+toc: false
 
 menu:
   main:
