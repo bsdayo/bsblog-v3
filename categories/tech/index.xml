@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>BsBlog</title><link>https://sorabs.cc/</link><description>Recent content on BsBlog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 14 Sep 2022 20:34:14 +0800</lastBuildDate><atom:link href="https://sorabs.cc/index.xml" rel="self" type="application/rss+xml"/><item><title>树莓派搭建 FTP 服务器实现局域网文件共享</title><link>https://sorabs.cc/posts/raspberrypi-ftp-server/</link><pubDate>Wed, 14 Sep 2022 20:34:14 +0800</pubDate><guid>https://sorabs.cc/posts/raspberrypi-ftp-server/</guid><description>&lt;img src="https://sorabs.cc/posts/raspberrypi-ftp-server/cover.jpg" alt="Featured image of post 树莓派搭建 FTP 服务器实现局域网文件共享" />&lt;h2 id="起因">起因&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>技术 on BsBlog</title><link>https://sorabs.cc/categories/tech/</link><description>Recent content in 技术 on BsBlog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><atom:link href="https://sorabs.cc/categories/tech/index.xml" rel="self" type="application/rss+xml"/><item><title>树莓派搭建 FTP 服务器实现局域网文件共享</title><link>https://sorabs.cc/posts/raspberrypi-ftp-server/</link><pubDate>Wed, 14 Sep 2022 20:34:14 +0800</pubDate><guid>https://sorabs.cc/posts/raspberrypi-ftp-server/</guid><description>&lt;img src="https://sorabs.cc/posts/raspberrypi-ftp-server/cover.jpg" alt="Featured image of post 树莓派搭建 FTP 服务器实现局域网文件共享" />&lt;h2 id="起因">起因&lt;/h2>
 &lt;p>经常需要在电脑和手机之间互传文件，想了不少办法，最早是使用 QQ 等聊天工具进行文件传输，效率十分低下；后来找到了 &lt;a class="link" href="https://snapdrop.net/" target="_blank" rel="noopener"
 >SnapDrop&lt;/a> 这款工具，可以以类似面对面快传的方式在局域网内传输文件，提高了些许效率，但还是感觉到些许别扭。于是开始找寻一种更为优雅的文件传输方式，想到手里有一个半吃灰的树莓派，就开始着手搭建自己的 FTP 文件服务器。&lt;/p>
 &lt;div class="tip tip-quote">
@@ -128,34 +128,7 @@ RAM：4GB&lt;br>
 &lt;/div>&lt;h3 id="vsftpd-refusing-to-run-with-writable-root-inside-chroot">vsftpd: refusing to run with writable root inside chroot&lt;/h3>
 &lt;p>如果设置了 chroot 后无法新建文件夹/上传文件，并提示以上信息，是因为 &lt;code>2.3.5&lt;/code> 版本后 &lt;code>vsftpd&lt;/code> 加强了安全检查，用户的主目录不能再有写权限，如果检查到就会报错。可以在配置文件中添加 &lt;code>allow_writeable_chroot=YES&lt;/code> 来解决。&lt;/p>
 &lt;p>参考自&lt;a class="link" href="https://blog.csdn.net/bluishglc/article/details/42399439" target="_blank" rel="noopener"
->这里&lt;/a>&lt;/p></description></item><item><title>测试场 | TestGround</title><link>https://sorabs.cc/posts/testground/</link><pubDate>Tue, 13 Sep 2022 21:25:32 +0800</pubDate><guid>https://sorabs.cc/posts/testground/</guid><description>&lt;img src="https://sorabs.cc/posts/testground/cover.png" alt="Featured image of post 测试场 | TestGround" />&lt;h2 id="typography">Typography&lt;/h2>
-&lt;p>隐藏文字，鼠标悬停（移动端点击）以展示： &lt;del>HUGO YES!&lt;/del>&lt;/p>
-&lt;h2 id="shortcodes">Shortcodes&lt;/h2>
-&lt;h3 id="tip">Tip&lt;/h3>
-&lt;div class="tip tip-info">
-&lt;div class="tip-header">Information&lt;/div>
-&lt;div class="tip-content">Information tip test.&lt;/div>
-&lt;/div>
-&lt;div class="tip tip-warn">
-&lt;div class="tip-header">Warning&lt;/div>
-&lt;div class="tip-content">Warning tip test.&lt;/div>
-&lt;/div>
-&lt;div class="tip tip-error">
-&lt;div class="tip-header">Error&lt;/div>
-&lt;div class="tip-content">Error tip test.&lt;/div>
-&lt;/div>
-&lt;div class="tip tip-success">
-&lt;div class="tip-header">Success&lt;/div>
-&lt;div class="tip-content">Success tip test.&lt;/div>
-&lt;/div>
-&lt;div class="tip tip-quote">
-&lt;div class="tip-header">Quote&lt;/div>
-&lt;div class="tip-content">Quote tip test.&lt;/div>
-&lt;/div>
-&lt;div class="tip tip-info">
-&lt;div class="tip-header">这是一段长文本&lt;/div>
-&lt;div class="tip-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/div>
-&lt;/div></description></item><item><title>星露谷模组加载器 —— SMAPI 的安装</title><link>https://sorabs.cc/posts/smapi-install/</link><pubDate>Tue, 13 Sep 2022 19:34:50 +0800</pubDate><guid>https://sorabs.cc/posts/smapi-install/</guid><description>&lt;p>一直听说&lt;a class="link" href="https://store.steampowered.com/app/413150/Stardew_Valley/?l=schinese" target="_blank" rel="noopener"
+>这里&lt;/a>&lt;/p></description></item><item><title>星露谷模组加载器 —— SMAPI 的安装</title><link>https://sorabs.cc/posts/smapi-install/</link><pubDate>Tue, 13 Sep 2022 19:34:50 +0800</pubDate><guid>https://sorabs.cc/posts/smapi-install/</guid><description>&lt;p>一直听说&lt;a class="link" href="https://store.steampowered.com/app/413150/Stardew_Valley/?l=schinese" target="_blank" rel="noopener"
 >星露谷&lt;/a>对于 Mod 的支持十分完善，这次打算自己尝试一番。&lt;/p>
 &lt;div class="tip tip-info">
 &lt;div class="tip-header">注意&lt;/div>
@@ -218,65 +191,4 @@ RAM：4GB&lt;br>
 &lt;div class="tip-content">在配置Steam启动项之前，需要确保您的游戏路径里没有中文，否则将设置失败。&lt;/div>
 &lt;/div>
 &lt;p>首先复制终端窗口中给出的启动指令（如上文，为 &lt;code>&amp;quot;D:\Steam\steamapps\common\Stardew Valley\StardewModdingAPI.exe&amp;quot; %command%&lt;/code>），Steam 中右键星露谷打开属性，在“通用”选项卡中把复制的指令粘贴进“启动选项”一栏，保存即可。&lt;/p>
-&lt;p>至此已经完成了 SMAPI 的安装，至于添加 Mod 下次再讲 &lt;del>（咕咕咕（（&lt;/del>&lt;/p></description></item><item><title>Brand New Blog v3</title><link>https://sorabs.cc/posts/brand-new-blog-v3/</link><pubDate>Mon, 12 Sep 2022 15:44:45 +0800</pubDate><guid>https://sorabs.cc/posts/brand-new-blog-v3/</guid><description>&lt;p>很久没写博客了，前些天看到几个群友的博客，心血来潮想把自己的复兴一下&lt;/p>
-&lt;h2 id="发展历程">发展历程&lt;/h2>
-&lt;p>在此前已经有过两版博客，但由于懒惰等原因（）现在都废弃了。&lt;/p>
-&lt;h3 id="v1---hexo">v1 - Hexo&lt;/h3>
-&lt;p>最早的一版基于 Hexo 搭建，主题使用自定义程度极高的 butterfly，也草草写过几篇文章。但也正因为自定义程度极高，导致花费大量时间去折腾，反而丢了写博客的初衷。而且 butterfly 主题引用大量的 js 文件和各种图片资源，博客变得非常臃肿，再加上 GitHub Pages 的网络因素，加载非常耗时，不久就放弃了。&lt;/p>
-&lt;h3 id="v2---vue">v2 - Vue&lt;/h3>
-&lt;p>沉寂一段时间之后突然心痒痒，又打算重做一个博客。这时候已经学过了 Vue.js，就抛弃了原有的 Hexo 架构，为了追求极致的开始自己从头写起。最终成品为单页面应用，同时使用自己写的 CLI 工具管理文章、图片等资源。但 v1 时 butterfly 的自定义就花费大量精力了，自己写指挥更甚。再者单页面应用对于 SEO 优化不是友好，也没有多余的服务器搞服务端渲染，加上技术不到位导致成品各种瑕疵&amp;hellip;多方面因素之下，第二版也放弃了。&lt;/p>
-&lt;h3 id="v3---hugo">v3 - Hugo!&lt;/h3>
-&lt;p>又隔了很久，直到最近才打算把博客重新搭起来，不然有时的一些想法也没法记录。参考了上次的教训，这次依然是在已有的博客框架中选择。寻觅一番后，最终选择了 Hugo。Hugo 与 Hexo 类似，同为静态网站生成引擎。但 Hexo 使用 Node.js 编写，而 Hugo 使用 Go，性能远远超过前者。（写到这里的时候测试了一下，执行生成操作的耗时仅有 1262ms，而印象中以前 Hexo 需要数十秒）；而且得益于 Go 语言的特性，Hugo 的所有环境只有一个简单的可执行文件，比起 Hexo 麻烦的环境配置好上太多。&lt;/p>
-&lt;h2 id="总结">总结&lt;/h2>
-&lt;p>从几版的经验可以看出，次次都在舍本逐末，钻研各种配置，却忘记了写文章的初衷。希望这一次的 v3 可以让自己反思一下，坚持下去。&lt;/p></description></item><item><title>关于</title><link>https://sorabs.cc/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sorabs.cc/about/</guid><description>&lt;h2 id="b1acksoil-aka-bs">b1acksoil a.k.a. bs&lt;/h2>
-&lt;ul>
-&lt;li>苦逼高三生&lt;/li>
-&lt;li>爱好 Coding，游戏，音乐&lt;/li>
-&lt;li>经常熬夜&lt;/li>
-&lt;li>又菜又爱玩的音游fw&lt;/li>
-&lt;li>&lt;del>lolicon&lt;/del>&lt;/li>
-&lt;/ul>
-&lt;p>关于自己貌似没什么好说的（）于是搬来了自己 GitHub 的 README&lt;/p>
-&lt;p>&lt;a class="link" href="mailto:bs@blacksoil.top" >&lt;img src="https://img.shields.io/badge/Mail-bs@blacksoil.top-grey?labelColor=E95A4E&amp;amp;color=CE4F45&amp;amp;style=for-the-badge&amp;amp;logo=gmail&amp;amp;logoColor=white"
-loading="lazy"
-alt="Mail"
->&lt;/a>
-&lt;a class="link" href="https://space.bilibili.com/33268404" target="_blank" rel="noopener"
->&lt;img src="https://img.shields.io/badge/bilibili-b1acksoil-grey?labelColor=00A1D6&amp;amp;color=008EBD&amp;amp;style=for-the-badge&amp;amp;logo=bilibili&amp;amp;logoColor=white"
-loading="lazy"
-alt="bilibili"
->&lt;/a>&lt;/p>
-&lt;p>&lt;img src="https://img.shields.io/badge/Learning-TypeScript-3178C6?style=flat-square&amp;amp;logo=typescript&amp;amp;logoColor=white"
-loading="lazy"
-alt="Learning TypeScript"
->
-&lt;img src="https://img.shields.io/badge/Learning-C%23-239120?style=flat-square&amp;amp;logo=csharp&amp;amp;logoColor=white"
-loading="lazy"
-alt="Learning C#"
->
-&lt;img src="https://img.shields.io/badge/Learning-Vue-4FC08D?style=flat-square&amp;amp;logo=vuedotjs&amp;amp;logoColor=white"
-loading="lazy"
-alt="Learning Vue"
->
-&lt;img src="https://img.shields.io/badge/Coding_With-MiPad_2-FF6900?style=flat-square&amp;amp;logo=xiaomi&amp;amp;logoColor=white"
-loading="lazy"
-alt="Coding With MiPad 2"
->&lt;/p>
-&lt;h3 id="stats">Stats&lt;/h3>
-&lt;p>&lt;img src="https://github-readme-stats.vercel.app/api?username=b1acksoil&amp;amp;theme=react&amp;amp;hide_border=true"
-loading="lazy"
-alt="GitHub Stats"
->
-&lt;img src="https://github-readme-stats.vercel.app/api/top-langs/?username=b1acksoil&amp;amp;layout=compact&amp;amp;hide=html,css,scss&amp;amp;theme=react&amp;amp;hide_border=true"
-loading="lazy"
-alt="Top Langs"
->&lt;/p></description></item><item><title>归档</title><link>https://sorabs.cc/archives/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sorabs.cc/archives/</guid><description/></item><item><title>搜索</title><link>https://sorabs.cc/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sorabs.cc/search/</guid><description/></item><item><title>友链</title><link>https://sorabs.cc/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sorabs.cc/links/</guid><description>&lt;p>欢迎交换友链！&lt;/p>
-&lt;p>名称：BsBlog&lt;br>
-链接：&lt;a class="link" href="https://sorabs.cc/" target="_blank" rel="noopener"
->https://sorabs.cc/&lt;/a>&lt;br>
-头像/Icon：&lt;a class="link" href="https://avatars.githubusercontent.com/u/41754841?v=4" target="_blank" rel="noopener"
->https://avatars.githubusercontent.com/u/41754841?v=4&lt;/a>&lt;br>
-简介/Description: Redefine the life.（和我熟的话其实写什么都行xxx）&lt;/p>
-&lt;p>交换友链可以邮箱联系我，地址是 &lt;a class="link" href="mailto:bs@sorabs.cc" >bs@sorabs.cc&lt;/a>；或者直接在下面评论，记得带上类似上面的格式哦~&lt;/p>
-&lt;p>拜拜各位大佬们~&lt;/p>
-&lt;p>*&lt;em>按首字母排序&lt;/em>&lt;/p></description></item></channel></rss>
+&lt;p>至此已经完成了 SMAPI 的安装，至于添加 Mod 下次再讲 &lt;del>（咕咕咕（（&lt;/del>&lt;/p></description></item></channel></rss>
