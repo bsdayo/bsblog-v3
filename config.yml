@@ -1,7 +1,7 @@
 baseurl: https://sorabs.cc
 languageCode: zh-cn
 theme: hugo-theme-stack
-paginate: 5
+paginate: 10
 title: BsBlog
 
 frontmatter:
