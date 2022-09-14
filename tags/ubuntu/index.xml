@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ubuntu on BsBlog</title><link>https://sorabs.cc/tags/ubuntu/</link><description>Recent content in Ubuntu on BsBlog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><atom:link href="https://sorabs.cc/tags/ubuntu/index.xml" rel="self" type="application/rss+xml"/><item><title>Mac风格 Ubuntu Desktop 美化教程</title><link>https://sorabs.cc/posts/ubuntu-desktop-mac-style/</link><pubDate>Tue, 27 Jul 2021 23:25:10 +0800</pubDate><guid>https://sorabs.cc/posts/ubuntu-desktop-mac-style/</guid><description>&lt;img src="https://sorabs.cc/posts/ubuntu-desktop-mac-style/cover.jpg" alt="Featured image of post Mac风格 Ubuntu Desktop 美化教程" />&lt;p>前些天把树莓派 4B 的系统换成了 Ubuntu Desktop 21.04，使用没什么问题，驱动支持也非常好，遂美化之。&lt;/p>
+&lt;p>本教程适用于任何 Ubuntu Desktop 系统（18.04 及以上），不仅限于树莓派。&lt;/p>
+&lt;p>先看看美化前的效果：&lt;/p>
+&lt;p>&lt;img src="https://sorabs.cc/posts/ubuntu-desktop-mac-style/before-beautify-1.jpg"
+width="1360"
+height="768"
+srcset="https://sorabs.cc/posts/ubuntu-desktop-mac-style/before-beautify-1_hu2b486e02c70a24c52ded4eb1ee9cd85e_49026_480x0_resize_q75_box.jpg 480w, https://sorabs.cc/posts/ubuntu-desktop-mac-style/before-beautify-1_hu2b486e02c70a24c52ded4eb1ee9cd85e_49026_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="美化前 1"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="425px"
+>
+&lt;img src="https://sorabs.cc/posts/ubuntu-desktop-mac-style/before-beautify-2.jpg"
+width="1360"
+height="768"
+srcset="https://sorabs.cc/posts/ubuntu-desktop-mac-style/before-beautify-2_hu5c55b2d7ef270645c5f24ae3a7745587_99115_480x0_resize_q75_box.jpg 480w, https://sorabs.cc/posts/ubuntu-desktop-mac-style/before-beautify-2_hu5c55b2d7ef270645c5f24ae3a7745587_99115_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="美化前 2"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="425px"
+>&lt;/p>
+&lt;p>再看看美化后：&lt;/p>
+&lt;p>&lt;img src="https://sorabs.cc/posts/ubuntu-desktop-mac-style/after-beautify-1.jpg"
+width="1360"
+height="768"
+srcset="https://sorabs.cc/posts/ubuntu-desktop-mac-style/after-beautify-1_hud7408dd6b44d9d4da7de60b0f222f08f_122195_480x0_resize_q75_box.jpg 480w, https://sorabs.cc/posts/ubuntu-desktop-mac-style/after-beautify-1_hud7408dd6b44d9d4da7de60b0f222f08f_122195_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="美化后 1"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="425px"
+>
+&lt;img src="https://sorabs.cc/posts/ubuntu-desktop-mac-style/after-beautify-2.jpg"
+width="1360"
+height="768"
+srcset="https://sorabs.cc/posts/ubuntu-desktop-mac-style/after-beautify-2_hu616101f198156c3ef5430786dffff34a_112447_480x0_resize_q75_box.jpg 480w, https://sorabs.cc/posts/ubuntu-desktop-mac-style/after-beautify-2_hu616101f198156c3ef5430786dffff34a_112447_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="美化后 2"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="425px"
+>&lt;/p>
+&lt;h2 id="准备工作">准备工作&lt;/h2>
+&lt;ul>
+&lt;li>一台安装了 Ubuntu Desktop 系统（18.04 版本及以上）的设备&lt;/li>
+&lt;li>手&lt;/li>
+&lt;/ul>
+&lt;p>使用前请将软件源更新到最新版本：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ sudo apt update
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="安装美化管理工具">安装美化管理工具&lt;/h2>
+&lt;p>打开终端，安装 &lt;code>gnome-tweaks&lt;/code> 工具&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ sudo apt install gnome-tweaks chrome-gnome-shell -y
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>随后打开 &lt;a class="link" href="https://extensions.gnome.org/" target="_blank" rel="noopener"
+>https://extensions.gnome.org/&lt;/a> ，点击 &lt;code>Click here to install browser extension&lt;/code> 安装浏览器插件&lt;/p>
+&lt;p>&lt;img src="https://sorabs.cc/posts/ubuntu-desktop-mac-style/install-browser-extension.png"
+width="1265"
+height="709"
+srcset="https://sorabs.cc/posts/ubuntu-desktop-mac-style/install-browser-extension_hud3226b62e892416ccfa0ea6163fc2fab_112470_480x0_resize_box_3.png 480w, https://sorabs.cc/posts/ubuntu-desktop-mac-style/install-browser-extension_hud3226b62e892416ccfa0ea6163fc2fab_112470_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="安装浏览器插件"
+class="gallery-image"
+data-flex-grow="178"
+data-flex-basis="428px"
+>&lt;/p>
+&lt;p>随后搜索 &lt;a class="link" href="https://extensions.gnome.org/extension/19/user-themes/" target="_blank" rel="noopener"
+>User Themes&lt;/a> 插件安装，点击页面右上角的开关，把&lt;code>OFF&lt;/code>改成&lt;code>ON&lt;/code>就可以了，如果弹出确认窗口就点确认&lt;/p>
+&lt;p>&lt;img src="https://sorabs.cc/posts/ubuntu-desktop-mac-style/user-theme-extension.png"
+width="1260"
+height="706"
+srcset="https://sorabs.cc/posts/ubuntu-desktop-mac-style/user-theme-extension_hu64b895532979400b646b276b02f74381_96786_480x0_resize_box_3.png 480w, https://sorabs.cc/posts/ubuntu-desktop-mac-style/user-theme-extension_hu64b895532979400b646b276b02f74381_96786_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="安装插件"
+class="gallery-image"
+data-flex-grow="178"
+data-flex-basis="428px"
+>&lt;/p>
+&lt;h2 id="dock-栏">Dock 栏&lt;/h2>
+&lt;p>Ubuntu Desktop 自带的 Dock 栏并不是很好用，可定制性也不强，这里使用 &lt;code>Dash to Dock&lt;/code> 插件增强。&lt;/p>
+&lt;p>向上面安装 &lt;code>User Theme&lt;/code> 插件一样，在 &lt;a class="link" href="https://extensions.gnome.org/" target="_blank" rel="noopener"
+>https://extensions.gnome.org/&lt;/a> 中搜索 &lt;a class="link" href="https://extensions.gnome.org/extension/307/dash-to-dock/" target="_blank" rel="noopener"
+>Dash to Dock&lt;/a> 并安装。&lt;/p>
+&lt;p>然后去 Gnome Tweaks 里启用：&lt;/p>
+&lt;p>&lt;img src="https://sorabs.cc/posts/ubuntu-desktop-mac-style/enable-dash-to-dock.png"
+width="944"
+height="610"
+srcset="https://sorabs.cc/posts/ubuntu-desktop-mac-style/enable-dash-to-dock_hu45a6b468070ccb066cd9f0b23d263097_69590_480x0_resize_box_3.png 480w, https://sorabs.cc/posts/ubuntu-desktop-mac-style/enable-dash-to-dock_hu45a6b468070ccb066cd9f0b23d263097_69590_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="启用 Dash to Dock 插件"
+class="gallery-image"
+data-flex-grow="154"
+data-flex-basis="371px"
+>&lt;/p>
+&lt;p>随后你可以右键 Dock 栏上的应用抽屉图标，打开 Dash to Dock 设置，这里可以配置一系列设置，如位置、图标大小、透明度等等。&lt;/p>
+&lt;p>&lt;img src="https://sorabs.cc/posts/ubuntu-desktop-mac-style/dash-to-dock-settings.png"
+width="598"
+height="688"
+srcset="https://sorabs.cc/posts/ubuntu-desktop-mac-style/dash-to-dock-settings_hu24bb054581936ca7580bbaf2fdaa939b_63408_480x0_resize_box_3.png 480w, https://sorabs.cc/posts/ubuntu-desktop-mac-style/dash-to-dock-settings_hu24bb054581936ca7580bbaf2fdaa939b_63408_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="Dash to Dock 设置"
+class="gallery-image"
+data-flex-grow="86"
+data-flex-basis="208px"
+>&lt;/p>
+&lt;h2 id="mac-风格主题安装">Mac 风格主题安装&lt;/h2>
+&lt;p>文首那种 Mac 风格的美化包是 &lt;a class="link" href="https://github.com/vinceliuice/WhiteSur-gtk-theme/" target="_blank" rel="noopener"
+>WhiteSur-gtk-theme&lt;/a>。&lt;/p>
+&lt;p>作者建议使用脚本方式安装，这样可以体验主题的全部功能，例如锁屏美化，Dock 栏美化等等。方法如下：&lt;/p>
+&lt;p>确保你安装了 &lt;code>git&lt;/code>：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ sudo apt install git -y
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>将 GitHub 上的&lt;a class="link" href="https://github.com/vinceliuice/WhiteSur-gtk-theme/" target="_blank" rel="noopener"
+>源码仓库&lt;/a>克隆到本地：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>执行安装：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ &lt;span class="nb">cd&lt;/span> WhiteSur-gtk-theme
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ chmod +x ./install.sh &lt;span class="c1"># 赋予可执行权限&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ ./install.sh
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这会以默认的方式自动安装 WhiteSur 主题到系统。（同时安装亮/暗色，所有选项保持默认）&lt;/p>
+&lt;h3 id="自定义安装">自定义安装&lt;/h3>
+&lt;h4 id="基本配置">基本配置&lt;/h4>
+&lt;p>这里列出了基本的主题配置选项&lt;/p>
+&lt;h5 id="主题模式">主题模式&lt;/h5>
+&lt;p>使用 &lt;code>-c&lt;/code> 或 &lt;code>--color&lt;/code> 选项选择主题模式（亮/暗色），可以重复使用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ ./install.sh -c light &lt;span class="c1"># 只安装亮色&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ ./install.sh -c light -c dark &lt;span class="c1"># 亮暗色一起安装&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>默认：亮暗色一起安装&lt;/p>
+&lt;h5 id="主题色">主题色&lt;/h5>
+&lt;p>使用 &lt;code>-t&lt;/code> 或 &lt;code>--theme&lt;/code> 选项选择主题色，可以重复使用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ ./install.sh -t red &lt;span class="c1"># 只安装红色&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ ./install.sh -t red -t blue &lt;span class="c1"># 安装红色和蓝色&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ ./install.sh -t all &lt;span class="c1"># 安装所有&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>默认：安装 &lt;code>default&lt;/code> 颜色&lt;/p>
+&lt;p>&lt;img src="https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur/colors-themes.png"
+width="978"
+height="736"
+srcset="https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur/colors-themes_hu396f4f19e9c0ac908bdac674d3679127_95515_480x0_resize_box_3.png 480w, https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur/colors-themes_hu396f4f19e9c0ac908bdac674d3679127_95515_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="主题模式/主题色"
+class="gallery-image"
+data-flex-grow="132"
+data-flex-basis="318px"
+>&lt;/p>
+&lt;h5 id="文件管理侧边栏宽度">文件管理侧边栏宽度&lt;/h5>
+&lt;p>使用 &lt;code>-s&lt;/code> 或 &lt;code>--sidebar&lt;/code> 选项更改文件管理的侧边栏宽度&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ ./install.sh -s &lt;span class="m">220&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>默认：使用 &lt;code>default&lt;/code> 宽度&lt;/p>
+&lt;p>&lt;img src="https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur/sidebars.png"
+width="978"
+height="282"
+srcset="https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur/sidebars_huc3566ea9b71695d6de19bab96ea5e501_31150_480x0_resize_box_3.png 480w, https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur/sidebars_huc3566ea9b71695d6de19bab96ea5e501_31150_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="文件管理侧边栏宽度"
+class="gallery-image"
+data-flex-grow="346"
+data-flex-basis="832px"
+>&lt;/p>
+&lt;h5 id="活动窗口管理器图标">活动窗口管理器图标&lt;/h5>
+&lt;p>使用 &lt;code>-i&lt;/code> 或 &lt;code>--icon&lt;/code> 选项更改活动窗口管理器的图标（最左上角的那个）&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ ./install.sh -i ubuntu
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>默认：使用苹果 logo&lt;/p>
+&lt;p>&lt;img src="https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur/icons.png"
+width="978"
+height="452"
+srcset="https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur/icons_hu3f22803408f916d88f61e7e2918e9f8e_65862_480x0_resize_box_3.png 480w, https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur/icons_hu3f22803408f916d88f61e7e2918e9f8e_65862_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="活动窗口管理器图标"
+class="gallery-image"
+data-flex-grow="216"
+data-flex-basis="519px"
+>&lt;/p>
+&lt;h5 id="文件管理器样式">文件管理器样式&lt;/h5>
+&lt;p>使用 &lt;code>-N&lt;/code> 或 &lt;code>--nautilus-style&lt;/code> 选项更改文件管理器的样式&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ ./install.sh -N mojave
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>默认：&lt;code>default&lt;/code> 样式&lt;/p>
+&lt;p>&lt;img src="https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur/nautilus.png"
+width="978"
+height="779"
+srcset="https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur/nautilus_huc2e027ed6d8c0d5eb422aac32ece32b0_82257_480x0_resize_box_3.png 480w, https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur/nautilus_huc2e027ed6d8c0d5eb422aac32ece32b0_82257_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="文件管理器样式"
+class="gallery-image"
+data-flex-grow="125"
+data-flex-basis="301px"
+>&lt;/p>
+&lt;h4 id="进阶配置">进阶配置&lt;/h4>
+&lt;p>这里列出了一些进阶配置，如 Firefox 浏览器美化，锁屏美化，Dash to Dock 美化等等&lt;/p>
+&lt;p>需要用到 &lt;code>./tweaks.sh&lt;/code>，先赋予可执行权限：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ chmod +x ./tweaks.sh
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h5 id="firefox-火狐浏览器">Firefox 火狐浏览器&lt;/h5>
+&lt;p>使用 &lt;code>-f&lt;/code> 或 &lt;code>--firefox&lt;/code> 选项更改 Firefox（火狐浏览器）的界面样式&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ ./tweaks.sh -f &lt;span class="c1"># 使用默认样式&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ ./tweaks.sh -f monterey &lt;span class="c1"># 使用 Monterey 样式&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur/firefox-whitesur.jpg"
+width="978"
+height="500"
+srcset="https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur/firefox-whitesur_hu6c688f8f2c1fafff5590e13bbd72205c_39553_480x0_resize_q75_box.jpg 480w, https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur/firefox-whitesur_hu6c688f8f2c1fafff5590e13bbd72205c_39553_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="WhiteSur 样式"
+class="gallery-image"
+data-flex-grow="195"
+data-flex-basis="469px"
+>&lt;/p>
+&lt;p>&lt;img src="https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur/firefox-monterey.jpg"
+width="1760"
+height="960"
+srcset="https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur/firefox-monterey_huc9d7114cf6bfd7fd577e1098be1ae06c_107967_480x0_resize_q75_box.jpg 480w, https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur/firefox-monterey_huc9d7114cf6bfd7fd577e1098be1ae06c_107967_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="Monterey 样式"
+class="gallery-image"
+data-flex-grow="183"
+data-flex-basis="440px"
+>&lt;/p>
+&lt;h5 id="dash-to-dock">Dash to Dock&lt;/h5>
+&lt;p>使用 &lt;code>-d&lt;/code> 或 &lt;code>--dash-to-dock&lt;/code> 选项更改 Dash to Dock 的样式&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ ./tweaks.sh -d &lt;span class="c1"># 根据主题选择&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ ./tweaks.sh -d -c dark &lt;span class="c1"># 使用暗色&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur/dash-to-dock.png"
+width="978"
+height="448"
+srcset="https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur/dash-to-dock_hu5ad5059d2907964c2af539545f4ca486_79163_480x0_resize_box_3.png 480w, https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur/dash-to-dock_hu5ad5059d2907964c2af539545f4ca486_79163_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="Dash to Dock 样式"
+class="gallery-image"
+data-flex-grow="218"
+data-flex-basis="523px"
+>&lt;/p>
+&lt;h5 id="锁屏样式">锁屏样式&lt;/h5>
+&lt;p>使用 &lt;code>-g&lt;/code> 或 &lt;code>--gdm&lt;/code> 选项更改 Dash to Dock 的样式，需要以 root 身份运行。
+&lt;code>-b&lt;/code>、&lt;code>-n&lt;/code>、&lt;code>-N&lt;/code> 选项可以搭配使用。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ sudo ./tweaks.sh -g &lt;span class="c1"># 安装锁屏样式&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ sudo ./tweaks.sh -g -b &lt;span class="s2">&amp;#34;your picture.jpg&amp;#34;&lt;/span> &lt;span class="c1"># 自定义锁屏壁纸&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ sudo ./tweaks.sh -g -b default &lt;span class="c1"># 使用默认锁屏壁纸&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ sudo ./tweaks.sh -g -b blank &lt;span class="c1"># 不使用壁纸&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ sudo ./tweaks.sh -g -n &lt;span class="c1"># 不模糊壁纸&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ sudo ./tweaks.sh -g -N &lt;span class="c1"># 不调暗壁纸&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur/gdm.jpg"
+width="978"
+height="1182"
+srcset="https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur/gdm_hu6c688f8f2c1fafff5590e13bbd72205c_70170_480x0_resize_q75_box.jpg 480w, https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur/gdm_hu6c688f8f2c1fafff5590e13bbd72205c_70170_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="锁屏样式"
+class="gallery-image"
+data-flex-grow="82"
+data-flex-basis="198px"
+>&lt;/p>
+&lt;p>更多选项可以输入 &lt;code>./tweaks.sh -h&lt;/code> 来查看。&lt;/p>
+&lt;h2 id="图标">图标&lt;/h2>
+&lt;p>图标也可以使用 WhiteSur 的，来自于同一个作者。&lt;/p>
+&lt;p>&lt;img src="https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur-icons/preview-1.jpg"
+width="1253"
+height="1440"
+srcset="https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur-icons/preview-1_hu8939c68a8f11ea3afa076c562aa483ae_138599_480x0_resize_q75_box.jpg 480w, https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur-icons/preview-1_hu8939c68a8f11ea3afa076c562aa483ae_138599_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="预览 1"
+class="gallery-image"
+data-flex-grow="87"
+data-flex-basis="208px"
+>
+&lt;img src="https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur-icons/preview-2.jpg"
+width="1600"
+height="1481"
+srcset="https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur-icons/preview-2_hu18ce52fe86d383a93fbdbd46dae1015d_136848_480x0_resize_q75_box.jpg 480w, https://sorabs.cc/posts/ubuntu-desktop-mac-style/whitesur-icons/preview-2_hu18ce52fe86d383a93fbdbd46dae1015d_136848_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="预览 2"
+class="gallery-image"
+data-flex-grow="108"
+data-flex-basis="259px"
+>&lt;/p>
+&lt;h3 id="安装">安装&lt;/h3>
+&lt;p>与主题本体类似，需要使用 &lt;code>git&lt;/code> 将仓库克隆到本地：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ &lt;span class="nb">cd&lt;/span> WhiteSur-icon-theme
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ chmod +x ./install.sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ ./install.sh
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>下面列出了一些可用选项：&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>-d&lt;/code>, &lt;code>--dest&lt;/code> 定制主题安装目录 （默认为 &lt;code>$HOME/.themes&lt;/code>）&lt;/li>
+&lt;li>&lt;code>-n&lt;/code>, &lt;code>--name&lt;/code> 定制图标主题名 （默认为 &lt;code>WhiteSur&lt;/code>）&lt;/li>
+&lt;li>&lt;code>-t&lt;/code>, &lt;code>--theme&lt;/code> 定制主题色 [default/purple/pink/red/orange/yellow/green/grey/all] （默认为蓝色）&lt;/li>
+&lt;li>&lt;code>-a&lt;/code>, &lt;code>--alternative&lt;/code> 为软件中心和文件管理器安装图标&lt;/li>
+&lt;li>&lt;code>-b&lt;/code>, &lt;code>--bold &lt;/code> 安装加粗版本（推荐在高分屏下使用）&lt;/li>
+&lt;li>&lt;code>--black&lt;/code> 安装黑色面板主题图标&lt;/li>
+&lt;li>&lt;code>-h&lt;/code>, &lt;code>--help&lt;/code> 显示帮助信息&lt;/li>
+&lt;/ul>
+&lt;h3 id="应用主题">应用主题&lt;/h3>
+&lt;p>有时主题不会自动应用至系统，这时需要手动打开一开始安装的美化管理工具。应用列表里找到 &lt;code>优化&lt;/code> 应用或者终端输入 &lt;code>gnome-tweaks&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://sorabs.cc/posts/ubuntu-desktop-mac-style/gnome-tweaks.png"
+width="951"
+height="614"
+srcset="https://sorabs.cc/posts/ubuntu-desktop-mac-style/gnome-tweaks_huda4b4162c7c63071012bb1b4fb59a774_58223_480x0_resize_box_3.png 480w, https://sorabs.cc/posts/ubuntu-desktop-mac-style/gnome-tweaks_huda4b4162c7c63071012bb1b4fb59a774_58223_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="Gnome Tweaks 工具"
+class="gallery-image"
+data-flex-grow="154"
+data-flex-basis="371px"
+>&lt;/p>
+&lt;p>都选择 WhiteSur 即可。如果配置后不生效，重启后即可看到效果。&lt;/p>
+&lt;h2 id="参考">参考&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://github.com/vinceliuice/WhiteSur-gtk-theme" target="_blank" rel="noopener"
+>WhiteSur-gtk-theme GitHub 仓库&lt;/a>&lt;/li>
+&lt;/ul></description></item></channel></rss>

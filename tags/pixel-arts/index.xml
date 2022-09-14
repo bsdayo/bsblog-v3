@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>像素画 on BsBlog</title><link>https://sorabs.cc/tags/pixel-arts/</link><description>Recent content in 像素画 on BsBlog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><atom:link href="https://sorabs.cc/tags/pixel-arts/index.xml" rel="self" type="application/rss+xml"/><item><title>手动编译像素画软件 Aseprite</title><link>https://sorabs.cc/posts/manually-compile-aseprite/</link><pubDate>Wed, 09 Feb 2022 19:00:12 +0800</pubDate><guid>https://sorabs.cc/posts/manually-compile-aseprite/</guid><description>&lt;img src="https://sorabs.cc/posts/manually-compile-aseprite/cover.jpg" alt="Featured image of post 手动编译像素画软件 Aseprite" />&lt;p>最近学 2D 游戏开发，想自己画点像素画，就去找了找有什么好用的像素画软件。首先就想到了大名鼎鼎的 Aseprite，去 Steam 上搜了下，70RMB。&lt;/p>
+&lt;p>对于穷学生党来说 70 也不少了（）何况我年初收了一台米板 2，目前处于囊中羞涩的状态。搜索一番发现 Aseprite 居然是在 GitHub 上开源的，官方 repo 里也提供了编译说明，遂自行编译之。&lt;/p>
+&lt;p>本文仅涉及 Windows 平台下的编译，若是 macOS 或是 Linux 平台可自行查看&lt;a class="link" href="https://github.com/aseprite/aseprite/blob/main/INSTALL.md" target="_blank" rel="noopener"
+>官方编译说明&lt;/a>（方法大同小异，甚至更简单，因为不用装 VS）&lt;/p>
+&lt;p>平台：Windows 10&lt;/p>
+&lt;h2 id="准备工作">准备工作&lt;/h2>
+&lt;h3 id="安装-visual-studio-2019">安装 Visual Studio 2019+&lt;/h3>
+&lt;p>Windows 下的编译需要用到 Visual Studio Community （微软的 IDE）的 2019 或以上的版本，我使用的是 VS2022&lt;/p>
+&lt;p>前往 &lt;a class="link" href="https://visualstudio.microsoft.com/zh-hans/downloads/" target="_blank" rel="noopener"
+>Visual Studio Downloads&lt;/a> 下载社区版&lt;/p>
+&lt;p>&lt;img src="https://sorabs.cc/posts/manually-compile-aseprite/vs-downloads.jpg"
+width="2012"
+height="989"
+srcset="https://sorabs.cc/posts/manually-compile-aseprite/vs-downloads_hu52b2b151f3a0893bb81dd4c8ba77365d_134625_480x0_resize_q75_box.jpg 480w, https://sorabs.cc/posts/manually-compile-aseprite/vs-downloads_hu52b2b151f3a0893bb81dd4c8ba77365d_134625_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="下载社区版"
+class="gallery-image"
+data-flex-grow="203"
+data-flex-basis="488px"
+>&lt;/p>
+&lt;p>下载完成打开安装程序，选择 “使用 C++ 的桌面开发”，并在右侧&lt;strong>至少&lt;/strong>勾选 “MSVC C++ x64/x86 生成工具” 和 “Windows 10 SDK”，然后点击安装。&lt;/p>
+&lt;p>&lt;img src="https://sorabs.cc/posts/manually-compile-aseprite/vs-install.jpg"
+width="1800"
+height="1080"
+srcset="https://sorabs.cc/posts/manually-compile-aseprite/vs-install_hua6a532aed160158f87b4c71442e5b1bd_293359_480x0_resize_q75_box.jpg 480w, https://sorabs.cc/posts/manually-compile-aseprite/vs-install_hua6a532aed160158f87b4c71442e5b1bd_293359_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="注意右侧选项"
+class="gallery-image"
+data-flex-grow="166"
+data-flex-basis="400px"
+>&lt;/p>
+&lt;h3 id="安装-cmake">安装 Cmake&lt;/h3>
+&lt;p>前往 &lt;a class="link" href="https://cmake.org/download/" target="_blank" rel="noopener"
+>Cmake 官网&lt;/a>，在下方的 Binary distributions 中找到最新的 msi 安装文件并下载。&lt;/p>
+&lt;p>&lt;img src="https://sorabs.cc/posts/manually-compile-aseprite/cmake-downloads.jpg"
+width="1667"
+height="574"
+srcset="https://sorabs.cc/posts/manually-compile-aseprite/cmake-downloads_huc76bc216b580e239f188d1e0c414d590_147889_480x0_resize_q75_box.jpg 480w, https://sorabs.cc/posts/manually-compile-aseprite/cmake-downloads_huc76bc216b580e239f188d1e0c414d590_147889_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="64位系统选择第一个，32位选择第三个"
+class="gallery-image"
+data-flex-grow="290"
+data-flex-basis="697px"
+>&lt;/p>
+&lt;p>安装时选择第二个或者第三个就不用自己配置环境变量：&lt;/p>
+&lt;p>&lt;img src="https://sorabs.cc/posts/manually-compile-aseprite/cmake-install.jpg"
+width="988"
+height="769"
+srcset="https://sorabs.cc/posts/manually-compile-aseprite/cmake-install_hu69e658707050d0da87e3012c65a35342_94751_480x0_resize_q75_box.jpg 480w, https://sorabs.cc/posts/manually-compile-aseprite/cmake-install_hu69e658707050d0da87e3012c65a35342_94751_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="选择 Add to PATH"
+class="gallery-image"
+data-flex-grow="128"
+data-flex-basis="308px"
+>&lt;/p>
+&lt;p>记下 Cmake 的安装目录，稍后会用到。&lt;/p>
+&lt;div class="tip tip-warn">
+&lt;div class="tip-header">关于 MinGW&lt;/div>
+&lt;div class="tip-content">Aseprite 编译不支持 MinGW，所以对于 MinGW 用户，需要将环境变量中的 MinGW 删除。&lt;/div>
+&lt;/div>
+&lt;h3 id="安装-ninja">安装 Ninja&lt;/h3>
+&lt;p>前往 &lt;a class="link" href="https://github.com/ninja-build/ninja/releases" target="_blank" rel="noopener"
+>Ninja Releases&lt;/a> 下载 &lt;code>ninja-win.zip&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://sorabs.cc/posts/manually-compile-aseprite/ninja-downloads.jpg"
+width="2014"
+height="1492"
+srcset="https://sorabs.cc/posts/manually-compile-aseprite/ninja-downloads_huf4492e5958362d4fc793101be2cb264b_231604_480x0_resize_q75_box.jpg 480w, https://sorabs.cc/posts/manually-compile-aseprite/ninja-downloads_huf4492e5958362d4fc793101be2cb264b_231604_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="下载 ninja-win.zip"
+class="gallery-image"
+data-flex-grow="134"
+data-flex-basis="323px"
+>&lt;/p>
+&lt;p>打开 Cmake 的安装目录，并把 &lt;code>ninja-win.zip&lt;/code> 中的 &lt;code>ninja.exe&lt;/code> 解压到 &lt;code>&amp;lt;Cmake安装目录&amp;gt;\bin&lt;/code> 下&lt;/p>
+&lt;h3 id="下载-skia-m96">下载 Skia-m96&lt;/h3>
+&lt;p>前往 &lt;a class="link" href="https://github.com/aseprite/skia/releases" target="_blank" rel="noopener"
+>Skia Releases&lt;/a> 根据系统位数下载 &lt;code>Skia-Windows-Release.zip&lt;/code>，我的系统是 64 位的所以下载 x64 版本。
+注意下载的是 &lt;strong>m96&lt;/strong> 版本，不要下错了。&lt;/p>
+&lt;p>&lt;img src="https://sorabs.cc/posts/manually-compile-aseprite/skia-downloads.jpg"
+width="2014"
+height="2131"
+srcset="https://sorabs.cc/posts/manually-compile-aseprite/skia-downloads_huecf481546a2ac637dac3775a1d303de6_425761_480x0_resize_q75_box.jpg 480w, https://sorabs.cc/posts/manually-compile-aseprite/skia-downloads_huecf481546a2ac637dac3775a1d303de6_425761_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="下载 skia"
+class="gallery-image"
+data-flex-grow="94"
+data-flex-basis="226px"
+>&lt;/p>
+&lt;p>下载完解压好，记下位置，放在一旁备用。&lt;/p>
+&lt;h2 id="编译-aseprite">编译 Aseprite&lt;/h2>
+&lt;h3 id="下载-aseprite-源码">下载 Aseprite 源码&lt;/h3>
+&lt;p>前往 &lt;a class="link" href="https://github.com/aseprite/aseprite/releases" target="_blank" rel="noopener"
+>Aseprite Releases&lt;/a> 下载 &lt;code>Aseprite-&amp;lt;version&amp;gt;-Source.zip&lt;/code> 并解压，会使用 git 的也可以直接克隆仓库 &lt;code>https://github.com/aseprite/aseprite.git&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://sorabs.cc/posts/manually-compile-aseprite/aseprite-source-downloads.jpg"
+width="2014"
+height="1425"
+srcset="https://sorabs.cc/posts/manually-compile-aseprite/aseprite-source-downloads_hu75c6e50a8b7ed0e0dbced6dce848e499_231368_480x0_resize_q75_box.jpg 480w, https://sorabs.cc/posts/manually-compile-aseprite/aseprite-source-downloads_hu75c6e50a8b7ed0e0dbced6dce848e499_231368_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="下载 Aseprite--Source.zip"
+class="gallery-image"
+data-flex-grow="141"
+data-flex-basis="339px"
+>&lt;/p>
+&lt;h3 id="开始编译">开始编译&lt;/h3>
+&lt;p>在开始菜单的 Visual Studio 文件夹里找到 x64 Native Tools Command Prompt for VS（32 位打开 x86）&lt;/p>
+&lt;p>&lt;img src="https://sorabs.cc/posts/manually-compile-aseprite/open-vs-prompt.jpg"
+width="544"
+height="870"
+srcset="https://sorabs.cc/posts/manually-compile-aseprite/open-vs-prompt_hubdfb7d6bd0f922df81ea69efccd5da0d_61768_480x0_resize_q75_box.jpg 480w, https://sorabs.cc/posts/manually-compile-aseprite/open-vs-prompt_hubdfb7d6bd0f922df81ea69efccd5da0d_61768_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="打开 VS Prompt"
+class="gallery-image"
+data-flex-grow="62"
+data-flex-basis="150px"
+>&lt;/p>
+&lt;p>初始化完成后输入 &lt;code>cd &amp;lt;Aseprite源码目录&amp;gt;&lt;/code> 切换到源码目录下，如果在另一个分区则需要先用 &lt;code>&amp;lt;盘符&amp;gt;:&lt;/code> 切换。如默认打开了 &lt;code>D:\Microsoft Visual Studio\2022\Community&lt;/code>，而我的源码在 &lt;code>C:\Users\b1acksoil\Downloads\Aseprite-Source&lt;/code> 里：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">C:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cd C:\Users\b1acksoil\Downloads\Aseprite-Source
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>依次输入以下命令，第三条命令中将尖括号的内容（包括尖括号）替换为刚刚下载 Skia 解压后的文件夹：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">mkdir build
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cd build
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DLAF_BACKEND=skia -DSKIA_DIR=&amp;#34;&amp;lt;Skia目录&amp;gt;&amp;#34; -DSKIA_LIBRARY_DIR=&amp;#34;&amp;lt;Skia目录&amp;gt;\out\Release-x64&amp;#34; -DSKIA_LIBRARY=&amp;#34;&amp;lt;Skia目录&amp;gt;\out\Release-x64\skia.lib&amp;#34; -G Ninja ..
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>随后等待第一段编译，时间取决于你的电脑性能。结束后输入：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">ninja aseprite
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>期间最好不要做其他事情，性能差的电脑可以把后台清一清，否则可能会卡到一半。可以开个任务管理器看看，编译很占 CPU，如果 CPU 占用突然下去了并且命令行长时间不动了，就是卡住了，使用 &lt;code>Ctrl+C&lt;/code> 终止，输入 &lt;code>cd ..&lt;/code>，删除 Aseprite 源码下的 build 文件夹再重试一次。&lt;/p>
+&lt;p>完成后可以在 Aseprite 源码下的 build 文件夹内找到 bin 文件夹，可以重命名并移动到其他地方，里面的 &lt;code>aseprite.exe&lt;/code> 就是编译好的 Aseprite 主程序了。此时可以右键 &lt;code>aseprite.exe&lt;/code>，并 发送到 &amp;gt; 桌面快捷方式。&lt;/p>
+&lt;h3 id="汉化可选">汉化（可选）&lt;/h3>
+&lt;p>Aseprite 默认不含中文，但可以使用社区自制的中文汉化包。可以前往 &lt;a class="link" href="https://github.com/J-11/Aseprite-Simplified-Chinese/blob/master/README.md" target="_blank" rel="noopener"
+>README&lt;/a> 查看并下载。&lt;/p>
+&lt;h3 id="更新">更新&lt;/h3>
+&lt;p>如果 Aseprite 有更新，手动编译相比直接在 Steam 购买还是有一些缺陷的，只能重新编译。下载新版的源码，按照上面流程再来一遍即可，麻烦是麻烦了点，但是可以白嫖还要什么自行车呢（&lt;/p></description></item></channel></rss>
