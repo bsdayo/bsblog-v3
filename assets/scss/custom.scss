@@ -120,6 +120,11 @@ del {
   }
 }
 
+.article-list-description {
+  font-size: 1.4rem;
+  color: var(--card-text-color-tertiary);
+}
+
 // Hide Waline GIF button
 button.wl-action[title="表情包"] {
   display: none;

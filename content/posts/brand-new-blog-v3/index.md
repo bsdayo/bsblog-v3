@@ -2,6 +2,8 @@
 title: Brand New Blog v3
 date: 2022-09-12T15:44:45+08:00
 
+categories: share
+
 draft: false
 ---
 

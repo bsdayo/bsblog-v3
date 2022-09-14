@@ -2,6 +2,8 @@
 title: 星露谷模组加载器 —— SMAPI 的安装
 date: 2022-09-13T19:34:50+08:00
 
+categories: tech
+
 draft: false
 ---
 
