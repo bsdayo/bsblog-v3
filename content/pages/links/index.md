@@ -10,6 +10,11 @@ menu:
       icon: link
 
 links:
+  - title: NekoHouse
+    description: Touching Fish
+    website: https://blog.amu.moe/
+    image: https://blog.amu.moe/usr/AimuBot.webp
+
   - title: 落雪咖啡屋
     description: Lxns Network
     website: https://lxns.net/
