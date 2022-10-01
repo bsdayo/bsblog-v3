@@ -1,4 +1,239 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>BsBlog</title><link>https://sorabs.cc/</link><description>Recent content on BsBlog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 01 Oct 2022 09:38:08 +0800</lastBuildDate><atom:link href="https://sorabs.cc/index.xml" rel="self" type="application/rss+xml"/><item><title>使用 WSL2 部署 Arch Linux 环境</title><link>https://sorabs.cc/posts/wsl2-arch/</link><pubDate>Sat, 01 Oct 2022 09:38:08 +0800</pubDate><guid>https://sorabs.cc/posts/wsl2-arch/</guid><description>&lt;img src="https://sorabs.cc/posts/wsl2-arch/cover.jpg" alt="Featured image of post 使用 WSL2 部署 Arch Linux 环境" />&lt;p>最近入了 Arch Linux 的坑，手上没有空闲的机子可以装着玩，虚拟机又有点膈应的感觉，就找了找资料在 WSL2 上装了体验一下。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>BsBlog</title><link>https://sorabs.cc/</link><description>Recent content on BsBlog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 01 Oct 2022 15:52:24 +0800</lastBuildDate><atom:link href="https://sorabs.cc/index.xml" rel="self" type="application/rss+xml"/><item><title>使用 GPG 签名你的 Git Commit</title><link>https://sorabs.cc/posts/sign-git-commit-with-gpg/</link><pubDate>Sat, 01 Oct 2022 15:52:24 +0800</pubDate><guid>https://sorabs.cc/posts/sign-git-commit-with-gpg/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>在 GitHub 上浏览许多大仓库时，常常能见到在 commit 信息旁边有一个绿色的标识，里面写着 Verified。这种一看就令人安心的标志，自己也想搞一个（）上网查了查资料，发现只要对提交到 GitHub 的 commit 使用 GPG 进行签名即可，步骤也不麻烦，遂进行一个记录。&lt;/p>
+&lt;h2 id="什么是-gpg">什么是 GPG&lt;/h2>
+&lt;div class="tip tip-quote">
+&lt;div class="tip-header">&lt;/div>
+&lt;div class="tip-content">&lt;p>GnuPG is a complete and free implementation of the OpenPGP standard as defined by RFC4880 (also known as PGP). GnuPG allows you to encrypt and sign your data and communications; it features a versatile key management system, along with access modules for all kinds of public key directories. GnuPG, also known as GPG, is a command line tool with features for easy integration with other applications. A wealth of frontend applications and libraries are available. GnuPG also provides support for S/MIME and Secure Shell (ssh).&lt;/p>
+&lt;p>摘自 &lt;a class="link" href="https://gnupg.org/" target="_blank" rel="noopener"
+>GPG 官网&lt;/a>&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;p>简单来说，GPG (GNU Privacy Guard) 是由 GNU 组织提供的一款加密工具，并且是目前世界上最好用的加密工具之一。GPG 的用途十分广泛，而我们今天只是用它进行 git commit 的签名认证。&lt;/p>
+&lt;h2 id="生成-gpg-key">生成 GPG Key&lt;/h2>
+&lt;p>Windows 下安装 Git Bash 已经自带了 GPG 工具，可以使用 &lt;code>gpg --version&lt;/code> 验证：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;gt; gpg --version
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gpg (GnuPG) 2.2.29-unknown
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">libgcrypt 1.9.3-unknown
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Copyright (C) 2021 Free Software Foundation, Inc.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">License GNU GPL-3.0-or-later &amp;lt;https://gnu.org/licenses/gpl.html&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">This is free software: you are free to change and redistribute it.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">There is NO WARRANTY, to the extent permitted by law.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Home: /c/Users/b1acksoil/.gnupg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Supported algorithms:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Pubkey: RSA, ELG, DSA, ECDH, ECDSA, EDDSA
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Cipher: IDEA, 3DES, CAST5, BLOWFISH, AES, AES192, AES256, TWOFISH,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> CAMELLIA128, CAMELLIA192, CAMELLIA256
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Hash: SHA1, RIPEMD160, SHA256, SHA384, SHA512, SHA224
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Compression: Uncompressed, ZIP, ZLIB, BZIP2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>接着我们生成一个新的 GPG key：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="n">gpg&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="n">-full-generate-key&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>提示输入算法类型，密钥长度，选择默认即可。然后输入自己的邮箱、名称和密钥备注，最后会弹出一个窗口让你设置密码。&lt;/p>
+&lt;p>生成好密钥后会将密钥的 ID 输出在屏幕上，忘记了也没关系，可以使用 &lt;code>gpg --list-keys&lt;/code> 查看。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;gt; gpg --list-keys
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gpg: checking the trustdb
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gpg: marginals needed: 3 completes needed: 1 trust model: pgp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gpg: depth: 0 valid: 1 signed: 0 trust: 0-, 0q, 0n, 0m, 0f, 1u
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/c/Users/b1acksoil/.gnupg/pubring.kbx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pub rsa3072 2022-10-01 [SC]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 114514191981011451419198101145141919810
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">uid [ultimate] b1acksoil (for git commit) &amp;lt;dev@sorabs.cc&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sub rsa3072 2022-10-01 [E]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>pub 一栏，在密钥算法和日期下面，就是我们的密钥 ID。&lt;/p>
+&lt;h2 id="使用-gpg-对-git-commit-签名">使用 GPG 对 git commit 签名&lt;/h2>
+&lt;p>在对 git commit 进行签名之前，我们需要配置一下 git，让它知道我们使用了这个新创建的 GPG 密钥签名 commit：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">$ git config --global user.signingkey 你的密钥ID
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>为了试试签名的效果，我们随便创建一个测试用的 git 仓库，并进行一次提交：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">$ mkdir testgpg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ cd testgpg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ touch abc.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ git add .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ git commit -m -S &amp;#34;test gpg key&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这里提交时的 &lt;code>-S&lt;/code> 选项，表示我们使用 GPG 签名这次提交。&lt;/p>
+&lt;p>不同于以往直接提交成功，git 弹出一个窗口要求你输入密码，也就是我们设置的密钥密码。正确输入后便会完成提交，也就完成了我们第一次由 GPG 验证过的 commit。&lt;/p>
+&lt;div class="tip tip-note">
+&lt;div class="tip-header">不想每次都输入 -S 选项？&lt;/div>
+&lt;div class="tip-content">可以配置 &lt;code>git config --global commit.gpgsign true&lt;/code>，这样每一次提交都会自动签名。&lt;/div>
+&lt;/div>
+&lt;h2 id="将密钥导入-github">将密钥导入 GitHub&lt;/h2>
+&lt;p>本地签名好了，我们需要在 GitHub 里添加我们的密钥，否则即使签名了 GitHub 不认，也就没有小绿标了。&lt;/p>
+&lt;p>首先查看我们的 GPG 公钥：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;gt; gpg --armor --export 你的密钥ID
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-----BEGIN PGP PUBLIC KEY BLOCK-----
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">（你的公钥）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-----END PGP PUBLIC KEY BLOCK-----
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>登录 GitHub，点击头像 - Settings，然后打开 SSH and GPG keys 选项卡。&lt;/p>
+&lt;p>&lt;img src="https://sorabs.cc/posts/sign-git-commit-with-gpg/add-gpg-key-on-github.png"
+width="1374"
+height="628"
+srcset="https://sorabs.cc/posts/sign-git-commit-with-gpg/add-gpg-key-on-github_hu7495857d1e53226c51188097c25358f4_66549_480x0_resize_box_3.png 480w, https://sorabs.cc/posts/sign-git-commit-with-gpg/add-gpg-key-on-github_hu7495857d1e53226c51188097c25358f4_66549_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="往下翻到这里"
+class="gallery-image"
+data-flex-grow="218"
+data-flex-basis="525px"
+>&lt;/p>
+&lt;p>点击 New GPG key，输入想要的名称，然后把上面获取的公钥完整地（包括 &lt;code>-----BEGIN PGP PUBLIC KEY BLOCK-----&lt;/code> 和 &lt;code>-----END PGP PUBLIC KEY BLOCK-----&lt;/code>）复制到下面的文本框内，然后点击 Add GPG key 按钮完成。&lt;/p>
+&lt;p>&lt;img src="https://sorabs.cc/posts/sign-git-commit-with-gpg/edit-gpg-key.png"
+width="1366"
+height="902"
+srcset="https://sorabs.cc/posts/sign-git-commit-with-gpg/edit-gpg-key_hu7e5903b000c7722d0085df9f41982d7a_34525_480x0_resize_box_3.png 480w, https://sorabs.cc/posts/sign-git-commit-with-gpg/edit-gpg-key_hu7e5903b000c7722d0085df9f41982d7a_34525_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="输入页面"
+class="gallery-image"
+data-flex-grow="151"
+data-flex-basis="363px"
+>&lt;/p>
+&lt;p>这时我们就成功地让 GitHub “认识” 了我们的密钥了。本地执行一个提交并 push 到 GitHub 上，你会看到提交信息旁边有一个闪亮的 Verified 标识。&lt;/p>
+&lt;h2 id="附加信任-github-的-gpg-公钥">附加：信任 GitHub 的 GPG 公钥&lt;/h2>
+&lt;p>虽然我们本地的 commit 已经是签名过的了，但不在本地的，例如直接在 GitHub 网页端执行的提交，则是由 GitHub 代为签名，这导致我们无法验证这些签名的真实性。&lt;/p>
+&lt;p>信任 GitHub 的公钥即可解决这个问题：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">$ curl https://github.com/web-flow.gpg | gpg --import
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>回车执行，提示：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">gpg: key 4AEE18F83AFDEB23: public key &amp;#34;GitHub (web-flow commit signing) &amp;lt;noreply@github.com&amp;gt;&amp;#34; imported
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这里的 &lt;code>4AEE18F83AFDEB23&lt;/code> （可能有变化，以实际情况为准）就是 GitHub 的公钥 ID。接下来使用自己的密钥为其签名：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">$ gpg --sign-key 4AEE18F83AFDEB23
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pub rsa2048/4AEE18F83AFDEB23
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> created: 2017-08-16 expires: never usage: SC
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> trust: unknown validity: full
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[ full ] (1). GitHub (web-flow commit signing) &amp;lt;noreply@github.com&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pub rsa2048/4AEE18F83AFDEB23
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> created: 2017-08-16 expires: never usage: SC
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> trust: unknown validity: full
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Primary key fingerprint: 5DE3 E050 9C47 EA3C F04A 42D3 4AEE 18F8 3AFD EB23
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> GitHub (web-flow commit signing) &amp;lt;noreply@github.com&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Are you sure that you want to sign this key with your
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">key?
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Really sign? (y/N) y
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>输入 &lt;code>y&lt;/code> 并回车确认，我们便可以看到所有的签名都得到了验证。&lt;/p></description></item><item><title>使用 WSL2 部署 Arch Linux 环境</title><link>https://sorabs.cc/posts/wsl2-arch/</link><pubDate>Sat, 01 Oct 2022 09:38:08 +0800</pubDate><guid>https://sorabs.cc/posts/wsl2-arch/</guid><description>&lt;img src="https://sorabs.cc/posts/wsl2-arch/cover.jpg" alt="Featured image of post 使用 WSL2 部署 Arch Linux 环境" />&lt;p>最近入了 Arch Linux 的坑，手上没有空闲的机子可以装着玩，虚拟机又有点膈应的感觉，就找了找资料在 WSL2 上装了体验一下。&lt;/p>
 &lt;p>关于 WSL1 和 WSL2 的区别，不在本文的讨论范围内，可以前往&lt;a class="link" href="https://learn.microsoft.com/zh-cn/windows/wsl/compare-versions" target="_blank" rel="noopener"
 >微软的官方说明&lt;/a>查看。&lt;/p>
 &lt;p>本文中，以 &lt;code>&amp;gt;&lt;/code> 开头的命令为 Powershell 命令，&lt;code>#&lt;/code> 开头为 Arch 中的 &lt;code>root&lt;/code> 用户命令，&lt;code>$&lt;/code> 开头为 Arch 中的普通用户命令。&lt;/p>
