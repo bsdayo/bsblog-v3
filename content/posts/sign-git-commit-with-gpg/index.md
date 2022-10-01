@@ -4,8 +4,11 @@ date: 2022-10-01T15:52:24+08:00
 
 categories: tech
 tags:
+  - git
+  - github
+  - gpg
 
-image:
+image: cover.jpg
 
 draft: false
 ---
@@ -95,6 +98,8 @@ $ git commit -m -S "test gpg key"
 
 不同于以往直接提交成功，git 弹出一个窗口要求你输入密码，也就是我们设置的密钥密码。正确输入后便会完成提交，也就完成了我们第一次由 GPG 验证过的 commit。
 
+![输入密码](enter-passphrase.png)
+
 {{< tip note "不想每次都输入 -S 选项？" >}}
 可以配置 `git config --global commit.gpgsign true`，这样每一次提交都会自动签名。
 {{</ tip >}}
@@ -124,6 +129,8 @@ $ git commit -m -S "test gpg key"
 ![输入页面](edit-gpg-key.png)
 
 这时我们就成功地让 GitHub “认识” 了我们的密钥了。本地执行一个提交并 push 到 GitHub 上，你会看到提交信息旁边有一个闪亮的 Verified 标识。
+
+![Verified!](github-verified.png)
 
 ## 附加：信任 GitHub 的 GPG 公钥
 
