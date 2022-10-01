@@ -8,7 +8,7 @@ tags:
   - archlinux
   - linux
 
-image:
+image: cover.jpg
 
 draft: false
 ---
