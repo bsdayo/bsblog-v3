@@ -42,7 +42,7 @@ $ sudo apt install vsftpd -y
 $ sudo passwd ftp
 ```
 
-{{< tip info "FTP 文件存放位置" >}}
+{{< tip note "FTP 文件存放位置" >}}
 FTP 服务开启后的文件存储位置就是 `frp` 用户的家目录，位于 `/srv/ftp`
 {{</ tip >}}
 

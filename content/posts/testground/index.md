@@ -18,6 +18,10 @@ draft: false
 Information tip test.
 {{</ tip >}}
 
+{{< tip note Note >}}
+Note tip test.
+{{</ tip >}}
+
 {{< tip warn Warning >}}
 Warning tip test.
 {{</ tip >}}
@@ -32,6 +36,10 @@ Success tip test.
 
 {{< tip quote Quote >}}
 Quote tip test.
+{{</ tip >}}
+
+{{< tip example Example >}}
+Example tip test.
 {{</ tip >}}
 
 {{< tip info 这是一段长文本 >}}

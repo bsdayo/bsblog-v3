@@ -1,0 +1,144 @@
+:root {
+  --tip-content-background-color: #fff;
+
+  &[data-scheme='dark'] {
+    --tip-content-background-color: #393939;
+  }
+}
+
+.tip {
+  border-left: 4px solid;
+  box-sizing: border-box;
+  box-shadow: var(--shadow-l1);
+  border-radius: 2px;
+  margin: 1.5em 0;
+  font-size: 0.95em;
+
+  .tip-header {
+    font-weight: 700;
+    position: relative;
+    padding: 0.4em 0 0.4em 3em;
+    border-top-right-radius: 4px;
+
+    &::before {
+      font-weight: 500;
+      font-family: 'Material Icons Round';
+      position: absolute;
+      font-size: 1.4em;
+      left: 0.6em;
+      top: 0;
+    }
+  }
+
+  .tip-content {
+    padding: 1em;
+    background-color: var(--tip-content-background-color);
+    border-bottom-right-radius: 4px;
+
+    p {
+      &:first-child {
+        margin-top: 0;
+      }
+  
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &.tip-info {
+    border-color: #00b8d4;
+
+    .tip-header {
+      background-color: rgba(0, 184, 212, 0.1);
+
+      &::before {
+        content: '\e88e';
+        color: #00b8d4;
+      }
+    }
+  }
+
+  &.tip-warn {
+    border-color: #ff9100;
+
+    .tip-header {
+      background-color: rgba(255, 145, 0, 0.1);
+
+      &::before {
+        content: '\e002';
+        color: #ff9100;
+      }
+    }
+  }
+
+  &.tip-error {
+    border-color: #ff1744;
+
+    .tip-header {
+      background-color: rgba(255, 23, 68, 0.1);
+
+      &::before {
+        content: '\e000';
+        color: #ff1744;
+      }
+    }
+  }
+
+  &.tip-success {
+    border-color: #00c853;
+
+    .tip-header {
+      background-color: rgba(0, 200, 83, 0.1);
+
+      &::before {
+        content: '\e876';
+        color: #00c853;
+      }
+    }
+  }
+
+  &.tip-quote {
+    border-color: #9e9e9e;
+
+    .tip-header {
+      background-color: rgba(119, 119, 119, 0.1);
+
+      &::before {
+        content: '\e244';
+        color: #9e9e9e;
+      }
+    }
+  }
+
+  &.tip-example {
+    border-color: #7c4dff;
+
+    .tip-header {
+      background-color: rgba(124, 77, 255, 0.1);
+
+      &::before {
+        content: '\e244';
+        color: #7c4dff;
+      }
+    }
+  }
+
+  &.tip-note {
+    border-color: #448aff;
+
+    .tip-header {
+      background-color: rgba(68, 138, 255, 0.1);
+
+      &::before {
+        content: '\e244';
+        color: #448aff;
+      }
+    }
+  }
+}
+
+.article-list-description {
+  font-size: 1.4rem;
+  color: var(--card-text-color-tertiary);
+}
