@@ -32,7 +32,7 @@ RAM：4GB&lt;br>
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ sudo passwd ftp
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;div class="tip tip-info">
+&lt;/div>&lt;div class="tip tip-note">
 &lt;div class="tip-header">FTP 文件存放位置&lt;/div>
 &lt;div class="tip-content">FTP 服务开启后的文件存储位置就是 &lt;code>frp&lt;/code> 用户的家目录，位于 &lt;code>/srv/ftp&lt;/code>&lt;/div>
 &lt;/div>
@@ -136,6 +136,10 @@ RAM：4GB&lt;br>
 &lt;div class="tip-header">Information&lt;/div>
 &lt;div class="tip-content">Information tip test.&lt;/div>
 &lt;/div>
+&lt;div class="tip tip-note">
+&lt;div class="tip-header">Note&lt;/div>
+&lt;div class="tip-content">Note tip test.&lt;/div>
+&lt;/div>
 &lt;div class="tip tip-warn">
 &lt;div class="tip-header">Warning&lt;/div>
 &lt;div class="tip-content">Warning tip test.&lt;/div>
@@ -151,6 +155,10 @@ RAM：4GB&lt;br>
 &lt;div class="tip tip-quote">
 &lt;div class="tip-header">Quote&lt;/div>
 &lt;div class="tip-content">Quote tip test.&lt;/div>
+&lt;/div>
+&lt;div class="tip tip-example">
+&lt;div class="tip-header">Example&lt;/div>
+&lt;div class="tip-content">Example tip test.&lt;/div>
 &lt;/div>
 &lt;div class="tip tip-info">
 &lt;div class="tip-header">这是一段长文本&lt;/div>
