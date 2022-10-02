@@ -1,4 +1,239 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>技术 on BsBlog</title><link>https://sorabs.cc/categories/tech/</link><description>Recent content in 技术 on BsBlog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><atom:link href="https://sorabs.cc/categories/tech/index.xml" rel="self" type="application/rss+xml"/><item><title>使用 GPG 签名你的 Git Commit</title><link>https://sorabs.cc/posts/sign-git-commit-with-gpg/</link><pubDate>Sat, 01 Oct 2022 15:52:24 +0800</pubDate><guid>https://sorabs.cc/posts/sign-git-commit-with-gpg/</guid><description>&lt;img src="https://sorabs.cc/posts/sign-git-commit-with-gpg/cover.jpg" alt="Featured image of post 使用 GPG 签名你的 Git Commit" />&lt;h2 id="前言">前言&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>技术 on BsBlog</title><link>https://sorabs.cc/categories/tech/</link><description>Recent content in 技术 on BsBlog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><atom:link href="https://sorabs.cc/categories/tech/index.xml" rel="self" type="application/rss+xml"/><item><title>在树莓派 4B 上安装 Arch Linux ARM</title><link>https://sorabs.cc/posts/raspberrypi-4b-arch/</link><pubDate>Sun, 02 Oct 2022 10:51:14 +0800</pubDate><guid>https://sorabs.cc/posts/raspberrypi-4b-arch/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>自从在虚拟机、&lt;a class="link" href="../wsl2-arch/" >WSL2&lt;/a> 上相继安装过 Arch Linux 之后，我将目光投向了家里仅剩的一个还运行着 Ubuntu 的 Linux 设备 —— 树莓派 4B。&lt;/p>
+&lt;p>话不多说，直接开搞（&lt;/p>
+&lt;h2 id="准备">准备&lt;/h2>
+&lt;p>首先由于启动方式的不同，Arch Linux ARM for Raspberry Pi 并不能使用我们一般用的 RPi Imager 烧录。要安装 Arch，首先得准备一台已经装好了的 Linux 设备。可以使用虚拟机，这里我直接用树莓派的备用系统（一张烧好了官方系统的 SD 卡，作为后备还原系统）安装。&lt;/p>
+&lt;p>随便 pick 一张适合做系统的 SD 卡插入电脑，开始我们的安装。&lt;/p>
+&lt;h2 id="安装">安装&lt;/h2>
+&lt;p>使用 &lt;code>lsblk&lt;/code> 命令查看连接到设备的 SD 卡设备号，我这里为 &lt;code>/dev/sda&lt;/code>。&lt;/p>
+&lt;p>确认无误后，使用 &lt;code>sudo fdisk /dev/sda&lt;/code> （之后的 &lt;code>/dev/sda&lt;/code> 都换成你的 SD 卡）开始分区。&lt;/p>
+&lt;p>步骤如下：&lt;/p>
+&lt;ol>
+&lt;li>输入 &lt;code>o&lt;/code>，清除 SD 卡上现有的所有分区&lt;/li>
+&lt;li>输入 &lt;code>n&lt;/code>，新建一个分区，输入 &lt;code>1&lt;/code> 代表创建设备上的第一个分区，直接回车使用默认起始位置，然后输入 &lt;code>+200M&lt;/code> 指定结束位置。&lt;/li>
+&lt;li>输入 &lt;code>t&lt;/code>，然后输入 &lt;code>c&lt;/code>，将刚刚创建的分区类型切换为 W95 FAT32 (LBA)。&lt;/li>
+&lt;li>输入 &lt;code>n&lt;/code>，再新建一个分区，输入 &lt;code>2&lt;/code>，代表创建设备上的第二个分区，回车两次使用默认的起始和结束位置。&lt;/li>
+&lt;li>输入 &lt;code>w&lt;/code>，将刚刚的改动写入 SD 卡。&lt;/li>
+&lt;/ol>
+&lt;p>格式化新创建的分区：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ mkfs.vfat /dev/sda1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ mkfs.ext4 /dev/sda2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>挂载分区：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ mkdir boot root
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ mount /dev/sda1 boot
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ mount /dev/sda2 root
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>下载 rootfs 包，并将其解压到 &lt;code>root&lt;/code> 目录下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ wget http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-aarch64-latest.tar.gz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ bsdtar -xpf ArchLinuxARM-rpi-armv7-latest.tar.gz -C root
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ sync
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="tip tip-note">
+&lt;div class="tip-header">下载太慢...&lt;/div>
+&lt;div class="tip-content">如果下载太慢，也可以使用国内源下载，将 url 换为 &lt;a class="link" href="https://mirrors.tuna.tsinghua.edu.cn/archlinuxarm/os/ArchLinuxARM-rpi-aarch64-latest.tar.gz" target="_blank" rel="noopener"
+>https://mirrors.tuna.tsinghua.edu.cn/archlinuxarm/os/ArchLinuxARM-rpi-aarch64-latest.tar.gz&lt;/a>&lt;/div>
+&lt;/div>
+&lt;p>将启动文件复制到 &lt;code>boot&lt;/code> 目录下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ mv root/boot/* boot
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>更新 &lt;code>fstab&lt;/code>：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ sed -i &lt;span class="s1">&amp;#39;s/mmcblk0/mmcblk1/g&amp;#39;&lt;/span> root/etc/fstab
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>卸载 SD 卡：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ umount boot root
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>接下来把 SD 卡插入树莓派，连上网线，在路由器查看树莓派的 IP 地址，然后使用 SSH 链接。默认用户名称和密码都为 &lt;code>alarm&lt;/code>。登录上后切换到 &lt;code>root&lt;/code> 用户（默认密码为 &lt;code>root&lt;/code>），编辑 &lt;code>/etc/pacman.d/mirrorlist&lt;/code> 换源：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">$ su root
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># nano /etc/pacman.d/mirrorlist
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在文件开头添加以下内容：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxarm/$arch/$repo
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>也可以自行寻找其他的源添加，Ctrl+X 保存退出。&lt;/p>
+&lt;p>接着初始化 pacman 密钥：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># pacman-key --init
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># pacman-key --populate archlinuxarm
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>安装基本包：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># pacman -Syyu base-devel git
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后就完成了 Arch Linux ARM 在树莓派上的安装，接下来照例安装一下基本环境。&lt;/p>
+&lt;h2 id="配置可选">配置（可选）&lt;/h2>
+&lt;p>默认用户名字叫 &lt;code>alarm&lt;/code>，不太好听，改个自己的（&lt;code>bs&lt;/code> 换成用户名）：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># useradd -m -g users -G wheel -s /bin/bash bs
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>安装 &lt;code>yay&lt;/code> 包管理器&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ &lt;span class="nb">cd&lt;/span> ~
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ git clone https://aur.archlinux.org/yay-bin.git
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ &lt;span class="nb">cd&lt;/span> yay-bin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ makepkg -si
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>基本软件包&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ yay -S vim tree neofetch
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>安装 &lt;code>oh-my-zsh&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ yay -S zsh curl
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ sh -c &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="k">$(&lt;/span>curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh&lt;span class="k">)&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>常用 zsh 插件&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ &lt;span class="nb">cd&lt;/span> ~/.oh-my-zsh/plugins/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ git clone https://github.com/zsh-users/zsh-autosuggestions.git --depth &lt;span class="m">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ git clone https://github.com/zsh-users/zsh-syntax-higlighting.git --depth &lt;span class="m">1&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>编辑 &lt;code>~/.zshrc&lt;/code>，修改 &lt;code>plugins&lt;/code> 项&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">plugins=(
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> git
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> zsh-autosuggestions
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> zsh-syntax-highlighting
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="连接-wifi">连接 WiFi&lt;/h2>
+&lt;p>我们目前还是通过有线网连接到的网络，可以使用 &lt;code>NetworkManager&lt;/code> 连接到 WiFi：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ yay -S networkmanager
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ sudo systemctl &lt;span class="nb">enable&lt;/span> NetworkManager
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ sudo systemctl start NetworkManager
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>显示附近的 WiFi：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ nmcli device wifi list
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>连接 WiFi：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ nmcli device wifi connect WiFi名称 password 密码
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>使用 &lt;code>ip addr&lt;/code> 查看，发现已经连接到 WiFi了。&lt;/p></description></item><item><title>使用 GPG 签名你的 Git Commit</title><link>https://sorabs.cc/posts/sign-git-commit-with-gpg/</link><pubDate>Sat, 01 Oct 2022 15:52:24 +0800</pubDate><guid>https://sorabs.cc/posts/sign-git-commit-with-gpg/</guid><description>&lt;img src="https://sorabs.cc/posts/sign-git-commit-with-gpg/cover.jpg" alt="Featured image of post 使用 GPG 签名你的 Git Commit" />&lt;h2 id="前言">前言&lt;/h2>
 &lt;p>在 GitHub 上浏览许多大仓库时，常常能见到在 commit 信息旁边有一个绿色的标识，里面写着 Verified。这种一看就令人安心的标志，自己也想搞一个（）上网查了查资料，发现只要对提交到 GitHub 的 commit 使用 GPG 进行签名即可，步骤也不麻烦，遂进行一个记录。&lt;/p>
 &lt;h2 id="什么是-gpg">什么是 GPG&lt;/h2>
 &lt;div class="tip tip-quote">
