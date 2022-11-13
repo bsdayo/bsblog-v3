@@ -10,6 +10,11 @@ menu:
       icon: link
 
 links:
+  - title: Awblog
+    description: 是可爱的啊呜
+    website: https://blog.awbugl.top/
+    image: 
+
   - title: NekoHouse
     description: Touching Fish
     website: https://blog.amu.moe/
