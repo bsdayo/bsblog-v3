@@ -13,7 +13,7 @@ links:
   - title: Arisa | Blog
     description: Arisa 的个人博客
     website: https://blog.arisa.moe/
-    image: 
+    image: https://blog.arisa.moe/assets/favicon.webp
 
   - title: tomato
     description: tomato的小窝
