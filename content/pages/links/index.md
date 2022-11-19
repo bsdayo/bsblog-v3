@@ -10,6 +10,11 @@ menu:
       icon: link
 
 links:
+  - title: Arisa | Blog
+    description: Arisa 的个人博客
+    website: https://blog.arisa.moe/
+    image: 
+
   - title: tomato
     description: tomato的小窝
     website: https://wakaba.tomato-aoarasi.com
