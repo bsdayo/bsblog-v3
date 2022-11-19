@@ -13,7 +13,7 @@ links:
   - title: tomato
     description: tomato的小窝
     website: https://wakaba.tomato-aoarasi.com
-    image: https://hatsune.tomato-aoarasi.com/blog/image/head_icon.jpg
+    image: https://www.tomato-aoarasi.com/static/image/avatar.jpg
 
   - title: JR's Blog
     description: 这里是JR的小屋喵
