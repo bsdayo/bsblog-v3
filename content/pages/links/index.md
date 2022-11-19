@@ -10,6 +10,16 @@ menu:
       icon: link
 
 links:
+  - title: tomato
+    description: tomato的小窝
+    website: https://wakaba.tomato-aoarasi.com
+    image: https://hatsune.tomato-aoarasi.com/blog/image/head_icon.jpg
+
+  - title: JR's Blog
+    description: 这里是JR的小屋喵
+    website: https://blog.jason0743.best/
+    image: https://avatars.githubusercontent.com/u/40999116
+
   - title: Awblogu
     description: 是可爱的啊呜
     website: https://blog.awbugl.top/
@@ -41,7 +51,8 @@ links:
 名称：BsBlog  
 链接：[https://sorabs.cc/](https://sorabs.cc/)  
 头像/Icon：[https://avatars.githubusercontent.com/u/41754841?v=4](https://avatars.githubusercontent.com/u/41754841?v=4)  
-简介/Description: Redefine the life.（和我熟的话其实写什么都行 xxx）
+简介/Description: bs在摸鱼还是睡觉呢zzz
+> （和我熟的话其实写什么都行 xxx）
 
 交换友链可以邮箱联系我，地址是 [bs@sorabs.cc](mailto:bs@sorabs.cc)；或者直接在下面评论，记得带上类似上面的格式哦~
 
