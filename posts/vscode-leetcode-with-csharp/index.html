@@ -1,0 +1,299 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="最近终于接触了大名鼎鼎的 LeetCode 刷题平台，开始苦痛之路（x LeetCode 自带的网页编辑器体验并不好，代码补全、高亮等都不是很舒服，于是打算使用本地开发。尝试在"><title>使用 VSCode 打造 LeetCode 的 C# 刷题环境 - BsBlog</title><link rel=canonical href=https://sorabs.cc/posts/vscode-leetcode-with-csharp/><link rel=stylesheet href=/scss/style.min.1abb4d4f2a39b72fe5231d6c55d9a4ee2294f1c6d536f0528c995b0cbb62e9e7.css><meta property="og:title" content="使用 VSCode 打造 LeetCode 的 C# 刷题环境 - BsBlog"><meta property="og:description" content="最近终于接触了大名鼎鼎的 LeetCode 刷题平台，开始苦痛之路（x LeetCode 自带的网页编辑器体验并不好，代码补全、高亮等都不是很舒服，于是打算使用本地开发。尝试在"><meta property="og:url" content="https://sorabs.cc/posts/vscode-leetcode-with-csharp/"><meta property="og:site_name" content="BsBlog"><meta property="og:type" content="article"><meta property="article:section" content="Posts"><meta property="article:tag" content="vscode"><meta property="article:tag" content="leetcode"><meta property="article:tag" content="csharp"><meta property="article:published_time" content="2022-11-20T20:51:55+08:00"><meta property="article:modified_time" content="2022-11-20T14:33:46+00:00"><meta name=twitter:site content="@b1acksoil"><meta name=twitter:creator content="@b1acksoil"><meta name=twitter:title content="使用 VSCode 打造 LeetCode 的 C# 刷题环境 - BsBlog"><meta name=twitter:description content="最近终于接触了大名鼎鼎的 LeetCode 刷题平台，开始苦痛之路（x LeetCode 自带的网页编辑器体验并不好，代码补全、高亮等都不是很舒服，于是打算使用本地开发。尝试在"><link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel=stylesheet></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src="https://avatars.githubusercontent.com/u/41754841?v=4" width=300 height=300 class=site-logo loading=lazy alt=Avatar></a>
+<span class=emoji>🐟</span></figure><div class=site-meta><h1 class=site-name><a href=/>BsBlog</a></h1><h2 class=site-description>♪sakana——\(＞○＜\)♪</h2></div></header><ol class=social-menu><li><a href=https://github.com/b1acksoil target=_blank title=GitHub rel=me><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://space.bilibili.com/33268404/ target=_blank title=哔哩哔哩 rel=me><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-device-tv" width="48" height="48" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="3" y="7" width="18" height="13" rx="2"/><polyline points="16 3 12 7 8 3"/></svg></a></li><li><a href=mailto:bs@sorabs.cc target=_blank title=Mail rel=me><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail" width="48" height="48" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg><span>主页</span></a></li><li><a href=/archives/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg><span>归档</span></a></li><li><a href=/categories/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg><span>分类</span></a></li><li><a href=/tags/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"/><circle cx="9" cy="9" r="2"/></svg><span>标签</span></a></li><li><a href=/links/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg><span>友链</span></a></li><li><a href=/search/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg><span>搜索</span></a></li><li><a href=/about/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg><span>关于</span></a></li><div class=menu-bottom-section><li id=dark-mode-toggle><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><span>暗色模式</span></li></div></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#准备工作>准备工作</a></li><li><a href=#配置-leetcode-扩展和-net>配置 LeetCode 扩展和 .NET</a></li><li><a href=#调试配置>调试配置</a></li><li><a href=#一些小技巧>一些小技巧</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/tech/>技术</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/posts/vscode-leetcode-with-csharp/>使用 VSCode 打造 LeetCode 的 C# 刷题环境</a></h2></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>2022.11.20 20:51</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>阅读时长: 6 分钟</time></div></footer></div></header><section class=article-content><p>最近终于接触了大名鼎鼎的 LeetCode 刷题平台，开始苦痛之路（x</p><p>LeetCode 自带的网页编辑器体验并不好，代码补全、高亮等都不是很舒服，于是打算使用本地开发。尝试在 Rider 中找到了 IntelliJ 平台通用的 LeetCode 插件，但是对于 C# 支持并不是很好，有些水土不服，而且 Rider 也不很适合单个文件开发。最后我找到了 VSCode 的一款 LeetCode 刷题扩展，基本符合了我的需求。</p><p>这篇文章将简单记录一下结合 .NET / C# 使用的过程。</p><h2 id=准备工作>准备工作</h2><ol><li>首先安装 <a class=link href=https://code.visualstudio.com/download target=_blank rel=noopener>Visual Studio Code</a>。</li><li>打开 VSCode，在左侧的扩展市场找到以下扩展并安装：</li></ol><ul><li><a class=link href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp" target=_blank rel=noopener><strong>C#</strong> <em>by Microsoft</em></a>：基于 OmniSharp 提供对 C# 的语言支持，包括自动补全、语法高亮等。</li><li><a class=link href="https://marketplace.visualstudio.com/items?itemName=LeetCode.vscode-leetcode" target=_blank rel=noopener><strong>LeetCode</strong> <em>by 力扣 LeetCode</em></a>：LeetCode 官方提供的刷题扩展，拥有题库查看、测试、提交等功能。<a class=link href=https://github.com/LeetCode-OpenSource/vscode-leetcode/blob/master/docs/README_zh-CN.md target=_blank rel=noopener>扩展的中文文档</a></li></ul><h2 id=配置-leetcode-扩展和-net>配置 LeetCode 扩展和 .NET</h2><p>新建一个文件夹并在 VSCode 中打开，这将作为我们 LeetCode 的工作区。</p><p>在左侧找到 LeetCode 图标打开侧边栏，首先点击上方的小地球标志切换为国内的站点（leetcode.cn），然后点击 Sign in to LeetCode，输入账号密码登录。加载好后侧边栏会显示账号目前可用的题库。</p><p>随便打开一道，点击页面右下角的 Code Now 按钮，提示选择使用的语言，这里选择 csharp (C#)，扩展会自动创建一个名为 <code>ID.题目名称.cs</code> 的文件，例如下面这样：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=line><span class=cl><span class=cm>/*
+</span></span></span><span class=line><span class=cl><span class=cm> * @lc app=leetcode.cn id=1 lang=csharp
+</span></span></span><span class=line><span class=cl><span class=cm> *
+</span></span></span><span class=line><span class=cl><span class=cm> * [1] 两数之和
+</span></span></span><span class=line><span class=cl><span class=cm> */</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// @lc code=start</span>
+</span></span><span class=line><span class=cl><span class=k>public</span> <span class=k>class</span> <span class=nc>Solution</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=kt>int</span><span class=p>[]</span> <span class=n>TwoSum</span><span class=p>(</span><span class=kt>int</span><span class=p>[]</span> <span class=n>nums</span><span class=p>,</span> <span class=kt>int</span> <span class=n>target</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c1>// @lc code=end</span>
+</span></span></code></pre></td></tr></table></div></div><p>这个文件中，最上方的一块注释包含了题目的ID、标题，和用于 LeetCode 扩展识别的题目元数据。然后是两行特殊的注释，<code>// @lc code=start</code> 和 <code>// @lc code=end</code>。这两行中间的所有内容都会作为提交或测试题目时的提交内容，就像是网页编辑器中一样。而这两行之外的内容都不会提交，因此可以写一些本地测试用代码。</p><p>我们发现自动生成的文件直接放在根目录下，而且没有文件夹分隔。这样会显得很杂乱——尤其是需要为一道题编写多个题解的时候。LeetCode 扩展提供了一系列组件帮助我们自定义文件的生成路径。</p><p>打开设置页面，搜索 leetcode 并找到 <strong>Leetcode: Workspace Folder</strong> 设置项，将值更改为 LeetCode 工作区的目录。这一项指定了 LeetCode 文件生成的相对目录。</p><p>然后找到 <strong>LeetCode: File Path</strong> 项，点击进入 settings.json 中编辑。VSCode 会自动生成一些默认配置，我们对照修改即可：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=s2>&#34;leetcode.filePath&#34;</span><span class=err>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;default&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;folder&#34;</span><span class=p>:</span> <span class=s2>&#34;&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;filename&#34;</span><span class=p>:</span> <span class=s2>&#34;${id}-${kebab-case-name}.${ext}&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>修改 <code>folder</code> 和 <code>filename</code> 的值，其中 <code>folder</code> 的值将作为文件目录名的模板（相对于工作区根目录），<code>filename</code> 的值将作为生成文件名的模板。可以使用 <code>${xxx}</code> 作为预定义的插值，可以查看<a class=link href=https://github.com/LeetCode-OpenSource/vscode-leetcode/wiki/%E8%87%AA%E5%AE%9A%E4%B9%89%E9%A2%98%E7%9B%AE%E6%96%87%E4%BB%B6%E7%9A%84%E7%9B%B8%E5%AF%B9%E6%96%87%E4%BB%B6%E5%A4%B9%E8%B7%AF%E5%BE%84%E5%92%8C%E6%96%87%E4%BB%B6%E5%90%8D target=_blank rel=noopener>官方文档</a>了解可使用的插值。</p><p>我根据个人习惯修改成了如下形式：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=s2>&#34;leetcode.filePath&#34;</span><span class=err>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;default&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;folder&#34;</span><span class=p>:</span> <span class=s2>&#34;src/${id}-${PascalCaseName}&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;filename&#34;</span><span class=p>:</span> <span class=s2>&#34;Solution-.${ext}&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>这样生成的文件路径会形如 <code>src/1-两数之和/Solution-.cs</code>。</p><div class="tip tip-note"><div class=tip-header>关于命名</div><div class=tip-content>这里我在 <code>Solution</code> 后加了一个横杠，方便有多个题解的同时存在。只需重命名并在 <code>-</code> 后面加上序号即可，例如 <code>Solution-1.cs</code> <code>Solution-2.cs</code>。</div></div><p>文件生成好了，但我们还不能正式开始编写代码。不信试试，你会发现除了少数几个关键字外根本没有代码提示&mldr;</p><p>其实解决办法很简单，我们只需要在项目里创建一个 <code>csproj</code> 文件，将工作区内的 cs 文件表示成一个项目就可以了（一个 <code>.csproj</code> 就可以，不用带上解决方案 <code>.sln</code> 文件）。</p><div class="tip tip-note"><div class=tip-header>csproj 文件的存放位置</div><div class=tip-content>这里我将 <code>LeetCode.csproj</code> 放在了 <code>src</code> 目录下。由于 <code>csproj</code> 文件的位置会影响到 <code>bin</code>、<code>obj</code> 文件夹的位置，所以你的位置如果不一样，记得同步更改后文的 <code>launch.json</code>。</div></div><p>以下是基本的内容：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-xml data-lang=xml><span class=line><span class=cl><span class=c>&lt;!-- LeetCode.csproj --&gt;</span>
+</span></span><span class=line><span class=cl><span class=nt>&lt;Project</span> <span class=na>Sdk=</span><span class=s>&#34;Microsoft.NET.Sdk&#34;</span><span class=nt>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;PropertyGroup&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;OutputType&gt;</span>Exe<span class=nt>&lt;/OutputType&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;TargetFramework&gt;</span>net6.0<span class=nt>&lt;/TargetFramework&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;ImplicitUsings&gt;</span>enable<span class=nt>&lt;/ImplicitUsings&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;Nullable&gt;</span>enable<span class=nt>&lt;/Nullable&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;/PropertyGroup&gt;</span>
+</span></span><span class=line><span class=cl><span class=nt>&lt;/Project&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><p>目前观察下来 LeetCode 在执行 C# 代码时是会带上 <code>ImplictUsings</code> 的，所以这里我们也带上，减少麻烦。同时根据官网说明，LeetCode 使用的是 .NET 6，因此我们指定 <code>TargetFramework</code> 为 <code>net6.0</code>。</p><p>创建完项目文件后重启 VSCode，让 OmniSharp 服务重新加载一下。此时再编写代码就会有代码提示了。</p><div class="tip tip-note"><div class=tip-header>报了几十个莫名其妙的错误？</div><div class=tip-content>如果遇到诸如无法识别 <code>System</code> 命名空间等奇葩问题，可以删除生成的 <code>bin</code> 和 <code>obj</code> 文件夹，然后重新手动执行 <code>dotnet restore</code>。</div></div><h2 id=调试配置>调试配置</h2><p>有时我们通不过测试，但又不知道哪里出现了问题，这时我们就可以对程序 debug。得益于 VSCode 高度自定义化的调试配置，即使是 LeetCode 题解这样奇怪的项目结构也是可以调试的。</p><p>由于每个文件都是一个题解，常规的 .NET 调试方法并不适用，而所有题解共用一个入口点就过于麻烦了。这里采用的方法是将题解分隔至不同的命名空间，并在调试编译时指定 <code>StartupObject</code> 来指定启动的 <code>Main</code> 方法，从而执行单个题解的调试。</p><p>首先我们在刚刚生成的 cs 文件顶端添加一行 <code>namespace LeetCode.P1.S1;</code>。这是我个人的命名方法，代表 1 号题目 (<strong>P</strong>roblem) 的第 1 个题解 (<strong>S</strong>olution)。你也可以修改成自己的样式，注意同时需要在后文的 <code>tasks.json</code> 中同步更改。</p><p>在工作区根目录新建 <code>.vscode</code> 文件夹，并在其中新建以下文件和内容：</p><p><code>.vscode/tasks.json</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;version&#34;</span><span class=p>:</span> <span class=s2>&#34;2.0.0&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;tasks&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;label&#34;</span><span class=p>:</span> <span class=s2>&#34;build&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;command&#34;</span><span class=p>:</span> <span class=s2>&#34;dotnet&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;process&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;args&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;build&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;${workspaceFolder}/src/LeetCode.csproj&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;-p:StartupObject=LeetCode.P${input:problem}.S${input:solution}.Program&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;-p:GenerateFullPaths=true&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;/consoleloggerparameters:NoSummary&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=p>],</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;problemMatcher&#34;</span><span class=p>:</span> <span class=s2>&#34;$msCompile&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;inputs&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;id&#34;</span><span class=p>:</span> <span class=s2>&#34;problem&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;description&#34;</span><span class=p>:</span> <span class=s2>&#34;Please enter the problem ID.&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;default&#34;</span><span class=p>:</span> <span class=s2>&#34;&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;promptString&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;id&#34;</span><span class=p>:</span> <span class=s2>&#34;solution&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;description&#34;</span><span class=p>:</span> <span class=s2>&#34;Please enter the solution number.&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;default&#34;</span><span class=p>:</span> <span class=s2>&#34;1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;promptString&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>在 <code>dotnet build</code> 的选项中，我们指定了 <code>-p:StartupObject=LeetCode.P${input:problem}.S${input:solution}.Program</code>。这采用了 VSCode 的配置语法，执行该 task 时，VSCode 会展示两个输入框，一个是题目ID，一个是题解ID。例如用户输入 123、1 后会拼接成 <code>-p:StartupObject=LeetCode.P123.S1.Program</code>。选项意味着将程序的入口点设置为 <code>LeetCode.P123.S1.Program</code> 中的 <code>Main</code> 方法。</p><p>底下的 <code>inputs</code> 块是对上面两个输入框数据的描述。</p><p>然后我们创建 <code>.vscode/launch.json</code> 文件：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;version&#34;</span><span class=p>:</span> <span class=s2>&#34;0.2.0&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;configurations&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;.NET Core Launch (console)&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;coreclr&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;request&#34;</span><span class=p>:</span> <span class=s2>&#34;launch&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;preLaunchTask&#34;</span><span class=p>:</span> <span class=s2>&#34;build&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;program&#34;</span><span class=p>:</span> <span class=s2>&#34;${workspaceFolder}/src/bin/Debug/net6.0/LeetCode.dll&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;cwd&#34;</span><span class=p>:</span> <span class=s2>&#34;${workspaceFolder}&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;console&#34;</span><span class=p>:</span> <span class=s2>&#34;internalConsole&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;stopAtEntry&#34;</span><span class=p>:</span> <span class=kc>false</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>这个文件由 VSCode 自动生成的修改而来，只动了 <code>program</code> 项，将其指定为编译后的 DLL 文件路径。</p><p>在题解文件中，<code>// @lc code=end</code> 行下方（这样就不会把测试代码提交至 LeetCode）添加一个 <code>Program</code> 类，并添加一个 <code>Main</code> 静态方法，在其中实例化 <code>Solution</code> 类并调用题目方法。整个文件如下（以题目 9.回文数 举例）：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-csharp data-lang=csharp><span class=line><span class=cl><span class=cm>/*
+</span></span></span><span class=line><span class=cl><span class=cm> * @lc app=leetcode.cn id=9 lang=csharp
+</span></span></span><span class=line><span class=cl><span class=cm> *
+</span></span></span><span class=line><span class=cl><span class=cm> * [9] 回文数
+</span></span></span><span class=line><span class=cl><span class=cm> */</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 指定命名空间</span>
+</span></span><span class=line><span class=cl><span class=k>namespace</span> <span class=nn>LeetCode.P9.S1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 以下内容会被提交至 LeetCode</span>
+</span></span><span class=line><span class=cl><span class=c1>// @lc code=start</span>
+</span></span><span class=line><span class=cl><span class=k>public</span> <span class=k>class</span> <span class=nc>Solution</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=kt>bool</span> <span class=n>IsPalindrome</span><span class=p>(</span><span class=kt>int</span> <span class=n>x</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// 题解代码...</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// 你可以在任意地方打上断点调试。</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=k>true</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c1>// @lc code=end</span>
+</span></span><span class=line><span class=cl><span class=c1>// 以上内容会被提交至 LeetCode</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>public</span> <span class=k>static</span> <span class=k>class</span> <span class=nc>Program</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 程序从这里开始</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>static</span> <span class=k>void</span> <span class=n>Main</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// 实例化 Solution 类</span>
+</span></span><span class=line><span class=cl>        <span class=kt>var</span> <span class=n>solution</span> <span class=p>=</span> <span class=k>new</span> <span class=n>Solution</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1>// 调用方法，进入调试</span>
+</span></span><span class=line><span class=cl>        <span class=n>solution</span><span class=p>.</span><span class=n>IsPalindrome</span><span class=p>(</span><span class=m>1000021</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>按 F5 开启调试，提示输入题目 ID ( 9 ) 和题解序号 ( 1 )，随后成功启动调试。</p><h2 id=一些小技巧>一些小技巧</h2><p>对于测试，每次手动输入 <code>namespace</code> 和 <code>Program</code> 之类的东西还是有点麻烦。我们可以编写一些 code snippets 来达到自动补全的效果。</p><p>新建 <code>.vscode/csharp.code-snippets</code> 文件，输入以下内容：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;SolutionNamespace&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;scope&#34;</span><span class=p>:</span> <span class=s2>&#34;csharp&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;prefix&#34;</span><span class=p>:</span> <span class=s2>&#34;ns&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;body&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;namespace LeetCode.P$1.S$2;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;description&#34;</span><span class=p>:</span> <span class=s2>&#34;Solution Namespace&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;TestProgram&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;scope&#34;</span><span class=p>:</span> <span class=s2>&#34;csharp&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;prefix&#34;</span><span class=p>:</span> <span class=s2>&#34;tp&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;body&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;public static class Program&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;{&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;    public static void Main()&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;    {&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;        var solution = new Solution();&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;        &#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;        $1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;    }&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;}&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;description&#34;</span><span class=p>:</span> <span class=s2>&#34;Test Program&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>这样输入 <code>ns</code> 并 Tab 就能自动补全命名空间，输入 <code>tp</code> 就能自动补全测试类。</p></section><footer class=article-footer><section class=article-tags><a href=/tags/vscode/>VSCode</a>
+<a href=/tags/leetcode/>LeetCode</a>
+<a href=/tags/csharp/>C#</a></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section><section class=article-lastmod><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><span>最后更新于 2022.11.20 14:33</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/posts/skiasharp-type-initializer-exception/><div class=article-details><h2 class=article-title>SkiaSharp 的 Type Initializer Exception 解决记录</h2></div></a></article><article><a href=/posts/raspberrypi-4b-arch/><div class=article-details><h2 class=article-title>在树莓派 4B 上安装 Arch Linux ARM</h2></div></a></article><article class=has-image><a href=/posts/sign-git-commit-with-gpg/><div class=article-image><img src=/posts/sign-git-commit-with-gpg/cover.ebd4b60d80f70041dda8b110bf043882_huf80b4d0831747132b718fc35d3089796_53637_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post 使用 GPG 签名你的 Git Commit" data-hash="md5-69S2DYD3AEHdqLEQvwQ4gg=="></div><div class=article-details><h2 class=article-title>使用 GPG 签名你的 Git Commit</h2></div></a></article><article class=has-image><a href=/posts/wsl2-arch/><div class=article-image><img src=/posts/wsl2-arch/cover.75da214f57fd60cc36c477426d7f2b9a_hu33e4827e4f1cec4102b61099883c8097_54721_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post 使用 WSL2 部署 Arch Linux 环境" data-hash="md5-ddohT1f9YMw2xHdCbX8rmg=="></div><div class=article-details><h2 class=article-title>使用 WSL2 部署 Arch Linux 环境</h2></div></a></article><article class=has-image><a href=/posts/raspberrypi-ftp-server/><div class=article-image><img src=/posts/raspberrypi-ftp-server/cover.e3e70807457e6306e752acd5b48b763d_hu9e7cb5a45df0cdaf3fb81de0a36b0a5e_155771_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post 树莓派搭建 FTP 服务器实现局域网文件共享" data-hash="md5-4+cIB0V+YwbnUqzVtIt2PQ=="></div><div class=article-details><h2 class=article-title>树莓派搭建 FTP 服务器实现局域网文件共享</h2></div></a></article></div></div></aside><script src=//unpkg.com/@waline/client@v2/dist/waline.js></script>
+<link href=//unpkg.com/@waline/client@v2/dist/waline.css rel=stylesheet><div id=waline class=waline-container></div><style>.waline-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding);--waline-font-size:var(--article-font-size)}.waline-container .wl-count{color:var(--card-text-color-main)}</style><script>Waline.init({dark:'html[data-scheme="dark"]',el:"#waline",emoji:["https://unpkg.com/@waline/emojis@1.1.0/tieba","https://unpkg.com/@waline/emojis@1.1.0/bilibili","https://unpkg.com/@waline/emojis@1.1.0/qq"],lang:"zh-CN",locale:{admin:"管理员",placeholder:"留下你的足迹~"},requiredMeta:["name","email"],serverURL:"waline.sorabs.cc"})</script><footer class=site-footer><section class=copyright>&copy;
+2022 BsBlog</section><section class=powerby>Made by b1acksoil with love.<br>Built with <b><a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a></b><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.16.0>Stack</a></b> | Modified by <a href=https://sorabs.cc target=_blank rel=noopener>b1acksoil</a><br><a href="https://icp.gov.moe/?keyword=20229810" target=_blank>萌ICP备20229810号</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script></script><script src=https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/nprogress.min.js integrity=sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg crossorigin=anonymous></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/css/nprogress.css integrity=sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE crossorigin=anonymous><script>NProgress.start(),document.addEventListener("readystatechange",()=>{document.readyState==="interactive"&&NProgress.inc(.8),document.readyState==="complete"&&NProgress.done()})</script></body></html>

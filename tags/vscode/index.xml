@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>C# on BsBlog</title><link>https://sorabs.cc/tags/csharp/</link><description>Recent content in C# on BsBlog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><atom:link href="https://sorabs.cc/tags/csharp/index.xml" rel="self" type="application/rss+xml"/><item><title>使用 VSCode 打造 LeetCode 的 C# 刷题环境</title><link>https://sorabs.cc/posts/vscode-leetcode-with-csharp/</link><pubDate>Sun, 20 Nov 2022 20:51:55 +0800</pubDate><guid>https://sorabs.cc/posts/vscode-leetcode-with-csharp/</guid><description>&lt;p>最近终于接触了大名鼎鼎的 LeetCode 刷题平台，开始苦痛之路（x&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>VSCode on BsBlog</title><link>https://sorabs.cc/tags/vscode/</link><description>Recent content in VSCode on BsBlog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><atom:link href="https://sorabs.cc/tags/vscode/index.xml" rel="self" type="application/rss+xml"/><item><title>使用 VSCode 打造 LeetCode 的 C# 刷题环境</title><link>https://sorabs.cc/posts/vscode-leetcode-with-csharp/</link><pubDate>Sun, 20 Nov 2022 20:51:55 +0800</pubDate><guid>https://sorabs.cc/posts/vscode-leetcode-with-csharp/</guid><description>&lt;p>最近终于接触了大名鼎鼎的 LeetCode 刷题平台，开始苦痛之路（x&lt;/p>
 &lt;p>LeetCode 自带的网页编辑器体验并不好，代码补全、高亮等都不是很舒服，于是打算使用本地开发。尝试在 Rider 中找到了 IntelliJ 平台通用的 LeetCode 插件，但是对于 C# 支持并不是很好，有些水土不服，而且 Rider 也不很适合单个文件开发。最后我找到了 VSCode 的一款 LeetCode 刷题扩展，基本符合了我的需求。&lt;/p>
 &lt;p>这篇文章将简单记录一下结合 .NET / C# 使用的过程。&lt;/p>
 &lt;h2 id="准备工作">准备工作&lt;/h2>
@@ -392,43 +392,4 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>这样输入 &lt;code>ns&lt;/code> 并 Tab 就能自动补全命名空间，输入 &lt;code>tp&lt;/code> 就能自动补全测试类。&lt;/p></description></item><item><title>SkiaSharp 的 Type Initializer Exception 解决记录</title><link>https://sorabs.cc/posts/skiasharp-type-initializer-exception/</link><pubDate>Sun, 02 Oct 2022 14:46:48 +0800</pubDate><guid>https://sorabs.cc/posts/skiasharp-type-initializer-exception/</guid><description>&lt;p>给树莓派重新装了系统，重新把自己的 bot 挂上去，发现生成图片的时候会报出奇怪的错误：&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">TypeInitializationException: The type initializer for &amp;#39;SkiaSharp.SKImageInfo&amp;#39; threw an exception.
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> at SkiaSharp.SKImageInfo..ctor(Int32 width, Int32 height)
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ...
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>查询一番后，大多都是说是 SkiaSharp 的版本问题，升级就好，但是我已经在使用最新版本了）最后在&lt;a class="link" href="https://github.com/mono/SkiaSharp/issues/964#issuecomment-541399218" target="_blank" rel="noopener"
->这里&lt;/a>找到了解决方案。&lt;/p>
-&lt;p>&lt;strong>报错的原因是：系统缺少了 &lt;code>libfontconfig&lt;/code>，导致字体相关操作无法完成。&lt;/strong>&lt;/p>
-&lt;p>那就很简单了，使用 &lt;code>yay&lt;/code> 找找相关的包：&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;span class="lnt">6
-&lt;/span>&lt;span class="lnt">7
-&lt;/span>&lt;span class="lnt">8
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ yay libfontconfig
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">2&lt;/span> extra/libfontenc 1.1.6-1 &lt;span class="o">(&lt;/span>14.2 KiB 35.3 KiB&lt;span class="o">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> X11 font encoding library
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">1&lt;/span> extra/fontconfig 2:2.14.0-1 &lt;span class="o">(&lt;/span>340.5 KiB 1.0 MiB&lt;span class="o">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Library &lt;span class="k">for&lt;/span> configuring and customizing font &lt;span class="nv">access&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">==&lt;/span>&amp;gt; 要安装的包 &lt;span class="o">(&lt;/span>示例: &lt;span class="m">1&lt;/span> &lt;span class="m">2&lt;/span> 3, 1-3 或 ^4&lt;span class="o">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">==&lt;/span>&amp;gt; &lt;span class="m">1&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>看来就是这个 &lt;code>extra/fontconfig&lt;/code> 了，安装上去，重启应用再试了试，生成图片一切正常了。&lt;/p></description></item></channel></rss>
+&lt;/div>&lt;p>这样输入 &lt;code>ns&lt;/code> 并 Tab 就能自动补全命名空间，输入 &lt;code>tp&lt;/code> 就能自动补全测试类。&lt;/p></description></item></channel></rss>
