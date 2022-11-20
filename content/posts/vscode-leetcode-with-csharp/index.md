@@ -8,7 +8,7 @@ tags:
   - leetcode
   - csharp
 
-image:
+image: cover.jpg
 
 draft: false
 ---
