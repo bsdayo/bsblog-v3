@@ -10,6 +10,11 @@ menu:
       icon: link
 
 links:
+  - title: Azure Zeng's Blog
+    description: Azure Zeng 的小窝
+    website: https://blog.azurezeng.com/
+    image: https://azurezeng.com/friendly-link-image.png
+
   - title: Arisa | Blog
     description: Arisa 的个人博客
     website: https://blog.arisa.moe/
