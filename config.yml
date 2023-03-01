@@ -182,6 +182,7 @@ menu:
   main:
     - identifier: home
       name: 主页
+      url: /
       weight: -200
       params:
         icon: home
