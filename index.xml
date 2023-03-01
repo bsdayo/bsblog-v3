@@ -1918,7 +1918,7 @@ data-flex-basis="371px"
 &lt;ul>
 &lt;li>&lt;a class="link" href="https://github.com/vinceliuice/WhiteSur-gtk-theme" target="_blank" rel="noopener"
 >WhiteSur-gtk-theme GitHub 仓库&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>关于</title><link>https://sorabs.cc/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sorabs.cc/about/</guid><description>&lt;h2 id="b1acksoil-aka-bs">b1acksoil a.k.a. bs&lt;/h2>
+&lt;/ul></description></item><item><title>关于</title><link>https://sorabs.cc/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sorabs.cc/about/</guid><description>&lt;h2 id="cialloω-">Ciallo～(∠・ω&amp;lt; )⌒☆&lt;/h2>
 &lt;ul>
 &lt;li>苦逼高三生&lt;/li>
 &lt;li>爱好 Coding，游戏，音乐&lt;/li>
@@ -1926,40 +1926,78 @@ data-flex-basis="371px"
 &lt;li>又菜又爱玩的音游fw&lt;/li>
 &lt;li>&lt;del>lolicon&lt;/del>&lt;/li>
 &lt;/ul>
-&lt;p>关于自己貌似没什么好说的（）于是搬来了自己 GitHub 的 README&lt;/p>
-&lt;p>&lt;a class="link" href="mailto:bs@blacksoil.top" >&lt;img src="https://img.shields.io/badge/Mail-bs@blacksoil.top-grey?labelColor=E95A4E&amp;amp;color=CE4F45&amp;amp;style=for-the-badge&amp;amp;logo=gmail&amp;amp;logoColor=white"
+&lt;p>&lt;a class="link" href="https://sorabs.cc/" target="_blank" rel="noopener"
+>&lt;img src="https://img.shields.io/badge/Blog-sorabs.cc-white?labelColor=ff80ab&amp;amp;color=f06292&amp;amp;style=for-the-badge&amp;amp;logo=hugo&amp;amp;logoColor=white"
 loading="lazy"
-alt="Mail"
+alt="Blog"
 >&lt;/a>
 &lt;a class="link" href="https://space.bilibili.com/33268404" target="_blank" rel="noopener"
->&lt;img src="https://img.shields.io/badge/bilibili-b1acksoil-grey?labelColor=00A1D6&amp;amp;color=008EBD&amp;amp;style=for-the-badge&amp;amp;logo=bilibili&amp;amp;logoColor=white"
+>&lt;img src="https://img.shields.io/badge/bilibili-bsdayo-white?labelColor=00A1D6&amp;amp;color=008EBD&amp;amp;style=for-the-badge&amp;amp;logo=bilibili&amp;amp;logoColor=white"
 loading="lazy"
 alt="bilibili"
 >&lt;/a>&lt;/p>
-&lt;p>&lt;img src="https://img.shields.io/badge/Learning-TypeScript-3178C6?style=flat-square&amp;amp;logo=typescript&amp;amp;logoColor=white"
+&lt;p>&lt;a class="link" href="https://wakatime.com/@bsdayo" target="_blank" rel="noopener"
+>&lt;img src="https://wakatime.com/badge/user/b1ea68ff-35ad-48d6-aa5a-c0f1dfad4018.svg?style=flat"
 loading="lazy"
-alt="Learning TypeScript"
->
-&lt;img src="https://img.shields.io/badge/Learning-C%23-239120?style=flat-square&amp;amp;logo=csharp&amp;amp;logoColor=white"
-loading="lazy"
-alt="Learning C#"
->
-&lt;img src="https://img.shields.io/badge/Learning-Vue-4FC08D?style=flat-square&amp;amp;logo=vuedotjs&amp;amp;logoColor=white"
-loading="lazy"
-alt="Learning Vue"
->
-&lt;img src="https://img.shields.io/badge/Coding_With-MiPad_2-FF6900?style=flat-square&amp;amp;logo=xiaomi&amp;amp;logoColor=white"
+alt="WakaTime"
+>&lt;/a>
+&lt;img src="https://img.shields.io/badge/Coding_With-MiPad_2-FF6900?style=flat&amp;amp;logo=xiaomi&amp;amp;logoColor=white"
 loading="lazy"
 alt="Coding With MiPad 2"
 >&lt;/p>
-&lt;h3 id="stats">Stats&lt;/h3>
-&lt;p>&lt;img src="https://github-readme-stats.vercel.app/api?username=b1acksoil&amp;amp;theme=react&amp;amp;hide_border=true"
+&lt;h3 id="技术栈">技术栈&lt;/h3>
+&lt;!-- raw HTML omitted -->
+&lt;p>&lt;img src="https://img.shields.io/badge/.NET-512bd4?logo=.net"
 loading="lazy"
-alt="GitHub Stats"
+alt=".NET"
 >
-&lt;img src="https://github-readme-stats.vercel.app/api/top-langs/?username=b1acksoil&amp;amp;layout=compact&amp;amp;hide=html,css,scss&amp;amp;theme=react&amp;amp;hide_border=true"
+&lt;img src="https://img.shields.io/badge/C%23-239120?logo=csharp"
 loading="lazy"
-alt="Top Langs"
+alt="C#"
+>
+&lt;img src="https://img.shields.io/badge/PowerShell-5391fe?logo=powershell&amp;amp;logoColor=white"
+loading="lazy"
+alt="PowerShell"
+>
+&lt;img src="https://img.shields.io/badge/Node.js-339933?logo=node.js&amp;amp;logoColor=white"
+loading="lazy"
+alt="Node.js"
+>
+&lt;img src="https://img.shields.io/badge/TypeScript-3178c6?logo=typescript&amp;amp;logoColor=white"
+loading="lazy"
+alt="TypeScript"
+>
+&lt;img src="https://img.shields.io/badge/JavaScript-f7df1e?logo=javascript&amp;amp;logoColor=black"
+loading="lazy"
+alt="JavaScript"
+>
+&lt;img src="https://img.shields.io/badge/Python-3776ab?logo=python&amp;amp;logoColor=white"
+loading="lazy"
+alt="Python"
+>&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;p>&lt;img src="https://img.shields.io/badge/ASP.NET%20Core-0078d4?logo=.net"
+loading="lazy"
+alt="ASP.NET Core"
+>
+&lt;img src="https://img.shields.io/badge/EF%20Core-0078d4?logo=.net"
+loading="lazy"
+alt="EF Core"
+>
+&lt;img src="https://img.shields.io/badge/WPF-0078d4?logo=windows"
+loading="lazy"
+alt="WPF"
+>
+&lt;img src="https://img.shields.io/badge/Vue.js-4fc08d?logo=vue.js&amp;amp;logoColor=white"
+loading="lazy"
+alt="Vue.js"
+>&lt;/p>
+&lt;h3 id="统计">统计&lt;/h3>
+&lt;p>&lt;img src="https://github-readme-stats.vercel.app/api?username=bsdayo&amp;amp;theme=react&amp;amp;hide_border=true"
+loading="lazy"
+>
+&lt;img src="https://github-readme-stats.vercel.app/api/top-langs/?username=bsdayo&amp;amp;layout=compact&amp;amp;hide=html,css,scss&amp;amp;theme=react&amp;amp;hide_border=true"
+loading="lazy"
 >&lt;/p></description></item><item><title>归档</title><link>https://sorabs.cc/archives/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sorabs.cc/archives/</guid><description/></item><item><title>搜索</title><link>https://sorabs.cc/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sorabs.cc/search/</guid><description/></item><item><title>友链</title><link>https://sorabs.cc/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sorabs.cc/links/</guid><description>&lt;p>欢迎交换友链！&lt;/p>
 &lt;p>名称：BsBlog&lt;br>
 链接：&lt;a class="link" href="https://sorabs.cc/" target="_blank" rel="noopener"
